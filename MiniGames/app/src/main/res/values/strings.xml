@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">MiniGames</string>
+    <string name="text_velkommen">Velkommen til MiniGames!</string>
+    <string name="text_btn_spil">Spil singleplayer</string>
+    <string name="text_btn_indstillinger">Indstillinger</string>
+    <string name="text_score">Score: 0</string>
+
+    <!-- Indstillinger siden-->
+    <string name="text_navn">Navn:</string>
+    <string name="text_score_reset">\n Nulstil HighScoren</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+</resources>

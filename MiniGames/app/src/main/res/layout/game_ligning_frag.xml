@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".spil_fragmenter.game_ligning_frag">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/answerbutton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Button"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/answerbutton1" />
+
+        <Button
+            android:id="@+id/answerbutton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Button"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/answerbutton2" />
+
+        <Button
+            android:id="@+id/answerbutton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:text="Button"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/equation" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Løs ligningen"
+            android:textSize="36sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/equation"
+            android:layout_width="131dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="22dp"
+            android:gravity="center"
+            android:text="TextView"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="134dp"
+            android:layout_height="103dp"
+            android:layout_marginBottom="28dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintBottom_toTopOf="@+id/antalForkerte"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/answerbutton3"
+            app:srcCompat="@drawable/an_x" />
+
+        <TextView
+            android:id="@+id/antalRigtige"
+            android:layout_width="0dp"
+            android:layout_height="27dp"
+            android:layout_marginBottom="64dp"
+            android:layout_marginEnd="134dp"
+            android:layout_marginStart="34dp"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="@android:color/holo_green_dark"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/antalForkerte"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/answerbutton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:text="Button"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/equation" />
+
+        <android.support.constraint.Group
+            android:id="@+id/group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="61dp"
+            android:layout_marginStart="45dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="126dp" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="126dp" />
+
+        <TextView
+            android:id="@+id/antalForkerte"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="33dp"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="@android:color/holo_red_dark"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/antalRigtige"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/antalRigtige"
+            app:layout_constraintTop_toTopOf="@+id/antalRigtige"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</FrameLayout>
