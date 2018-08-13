@@ -28,7 +28,7 @@ public class SpilActivity extends AppCompatActivity {
 
     int spilnr;
     ArrayList<Fragment> spilListe;
-    ArrayList<String> highScoreListe;
+    public ArrayList<String> highScoreListe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

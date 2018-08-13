@@ -1,14 +1,17 @@
 package com.example.chris.minigames.spil_fragmenter;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+
 import com.example.chris.minigames.R;
 import com.example.chris.minigames.SpilActivity;
 
@@ -28,10 +31,17 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
         btn_replay_highscore.setOnClickListener(this);
 
 
+
+
+        String[] lande = { "Det her er et meget langt navn okay?", "Norge","Det her er et meget langt navn okay?","Det her er et meget langt navn okay?","Det her er et meget langt navn okay?","Det her er et meget langt navn okay?","Det her er et meget langt navn okay?"};
+        ListView highScoreListen = (ListView) tl.findViewById(R.id.highscore_list);
+        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1, lande);
+        ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.highscore_liste_design, R.id.navn_Highscorelisten, lande);
+
+        highScoreListen.setAdapter(adapter);
+
         return tl;
     }
-
-
 
 
     @Override
