@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class velkomstAktivitet extends AppCompatActivity implements View.OnClickListener {
 
@@ -20,9 +19,9 @@ public class velkomstAktivitet extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_velkomst_aktivitet);
 
         // Find knapper og opsæt
-        btn_spil = findViewById(R.id.btn_spil);
+        btn_spil = findViewById(R.id.btn_play);
         btn_spil.setOnClickListener(this);
-        btn_indstillinger = findViewById(R.id.btn_indstillinger);
+        btn_indstillinger = findViewById(R.id.btn_settings);
         btn_indstillinger.setOnClickListener(this);
         DisplayMetrics displaymetrics = new DisplayMetrics();
         this.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
@@ -33,12 +32,15 @@ public class velkomstAktivitet extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.btn_spil){
+        if(v.getId() == R.id.btn_play){
             Intent Act_SpilActivity = new Intent(getApplicationContext(),SpilActivity.class);
             startActivity(Act_SpilActivity);
 
-        }else if(v.getId() == R.id.btn_indstillinger){
-            Intent Act_indstillinger = new Intent(getApplicationContext(),IndstillingerActivity.class);
+        }else if(v.getId() == R.id.btn_settings){
+            /*Intent Act_indstillinger = new Intent(getApplicationContext(),IndstillingerActivity.class);
+            startActivity(Act_indstillinger);*/
+
+            Intent Act_indstillinger = new Intent(getApplicationContext(),Indstillinger_akt.class);
             startActivity(Act_indstillinger);
 
         }

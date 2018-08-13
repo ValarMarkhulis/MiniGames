@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".IndstillingerActivity" />
-        <activity android:name=".SpilActivity"></activity>
+        <activity android:name=".SpilActivity" android:theme="@style/FullscreenTheme"/>
+        <activity android:name=".Indstillinger_akt" />
     </application>
 
 </manifest>

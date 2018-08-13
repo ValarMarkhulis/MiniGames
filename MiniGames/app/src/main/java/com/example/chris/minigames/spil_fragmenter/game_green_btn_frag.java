@@ -24,10 +24,10 @@ public class game_green_btn_frag extends Fragment implements View.OnClickListene
         // Programmatisk layout
         View tl = inflater.inflate(R.layout.game_green_btn_frag, container, false);
 
-        knap = tl.findViewById(R.id.groen_knap);
+        knap = tl.findViewById(R.id.pic_GreenBtn);
         knap.setOnClickListener(this);
 
-        View skærmen = tl.findViewById(R.id.layoutet);
+        View skærmen = tl.findViewById(R.id.layout_GreenBtn);
         skærmen.setOnClickListener(this);
 
         return tl;

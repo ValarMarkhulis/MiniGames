@@ -2,17 +2,18 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Frame_GreenBtn"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".spil_fragmenter.game_ligning_frag">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/layoutet"
+        android:id="@+id/layout_GreenBtn"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/text_GreenBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -25,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/groen_knap"
+            android:id="@+id/pic_GreenBtn"
             android:layout_width="103dp"
             android:layout_height="91dp"
             android:layout_marginBottom="8dp"

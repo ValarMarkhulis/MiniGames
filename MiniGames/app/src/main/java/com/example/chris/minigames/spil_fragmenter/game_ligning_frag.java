@@ -43,11 +43,11 @@ public class game_ligning_frag extends Fragment  implements View.OnClickListener
             svar2 = tl.findViewById(R.id.answerbutton2);
             svar3 = tl.findViewById(R.id.answerbutton3);
             svar4 = tl.findViewById(R.id.answerbutton4);
-            flueben = tl.findViewById(R.id.imageView4);
+            flueben = tl.findViewById(R.id.pic_equation);
             flueben.setVisibility(View.INVISIBLE);
 
-            antalRigtigeText = tl.findViewById(R.id.antalRigtige);
-            antalForkerteText = tl.findViewById(R.id.antalForkerte);
+            antalRigtigeText = tl.findViewById(R.id.text_NumberCorrect);
+            antalForkerteText = tl.findViewById(R.id.text_NumberWrong);
 
             if(savedInstanceState != null){
                 antalRigtigeText.setText(""+savedInstanceState.getString("antalRigtige"));
