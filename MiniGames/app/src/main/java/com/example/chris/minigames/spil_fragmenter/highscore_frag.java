@@ -159,7 +159,7 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
         String nyt_navn = prefs.getString("spillernavn_key", "Standard Navn");
         nyt_navn = nyt_navn.replaceAll("[^\\x20-\\x7E]", ""); // Frasorterer alle karaktere udover dem der er fra 20 til 126
 
-        if(nyt_navn.length() > MAX_NAME_LENGTH || nyt_navn.trim().equals("")){ // Hvis navnet er for langt eller kun indeholder mellemrum
+        if(nyt_navn.length() > MAX_NAME_LENGTH || nyt_navn.trim().equals("") || !nyt_navn.matches("^[a-zA-Z0-9 ]*$")){ // Hvis navnet er for langt eller kun indeholder mellemrum
             nyt_navn = "Spillernavn";
         }else{
             nyt_navn = nyt_navn;

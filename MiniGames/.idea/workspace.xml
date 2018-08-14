@@ -89,15 +89,15 @@
       <file leaf-file-name="highscore_frag.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/spil_fragmenter/highscore_frag.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="942">
-              <caret line="202" column="38" lean-forward="false" selection-start-line="202" selection-start-column="38" selection-end-line="202" selection-end-column="38" />
+            <state relative-caret-position="204">
+              <caret line="161" column="111" lean-forward="false" selection-start-line="161" selection-start-column="111" selection-end-line="161" selection-end-column="111" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#4424#4432#0" expanded="true" />
-                <element signature="e#5159#5167#0" expanded="true" />
-                <element signature="e#5594#5602#0" expanded="true" />
-                <element signature="e#5661#5669#0" expanded="true" />
-                <element signature="e#7083#7091#0" expanded="true" />
+                <element signature="e#5199#5207#0" expanded="true" />
+                <element signature="e#5634#5642#0" expanded="true" />
+                <element signature="e#5701#5709#0" expanded="true" />
+                <element signature="e#7123#7131#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2406,7 +2406,7 @@
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="last_opened_file_path" value="/usr/bin/gitkraken" />
-    <property name="device.picker.selection" value="Nexus_5X_API_28_x86" />
+    <property name="device.picker.selection" value="FUH7N17731002162" />
     <property name="android.profiler.active" value="true" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
@@ -2684,10 +2684,10 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#4424#4432#0" expanded="true" />
-            <element signature="e#5159#5167#0" expanded="true" />
-            <element signature="e#5594#5602#0" expanded="true" />
-            <element signature="e#5661#5669#0" expanded="true" />
-            <element signature="e#7083#7091#0" expanded="true" />
+            <element signature="e#5199#5207#0" expanded="true" />
+            <element signature="e#5634#5642#0" expanded="true" />
+            <element signature="e#5701#5709#0" expanded="true" />
+            <element signature="e#7123#7131#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2734,10 +2734,10 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#4424#4432#0" expanded="true" />
-            <element signature="e#5159#5167#0" expanded="true" />
-            <element signature="e#5594#5602#0" expanded="true" />
-            <element signature="e#5661#5669#0" expanded="true" />
-            <element signature="e#7083#7091#0" expanded="true" />
+            <element signature="e#5199#5207#0" expanded="true" />
+            <element signature="e#5634#5642#0" expanded="true" />
+            <element signature="e#5701#5709#0" expanded="true" />
+            <element signature="e#7123#7131#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2797,10 +2797,10 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#4424#4432#0" expanded="true" />
-            <element signature="e#5159#5167#0" expanded="true" />
-            <element signature="e#5594#5602#0" expanded="true" />
-            <element signature="e#5661#5669#0" expanded="true" />
-            <element signature="e#7083#7091#0" expanded="true" />
+            <element signature="e#5199#5207#0" expanded="true" />
+            <element signature="e#5634#5642#0" expanded="true" />
+            <element signature="e#5701#5709#0" expanded="true" />
+            <element signature="e#7123#7131#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2965,15 +2965,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/spil_fragmenter/highscore_frag.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="942">
-          <caret line="202" column="38" lean-forward="false" selection-start-line="202" selection-start-column="38" selection-end-line="202" selection-end-column="38" />
+        <state relative-caret-position="204">
+          <caret line="161" column="111" lean-forward="false" selection-start-line="161" selection-start-column="111" selection-end-line="161" selection-end-column="111" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#4424#4432#0" expanded="true" />
-            <element signature="e#5159#5167#0" expanded="true" />
-            <element signature="e#5594#5602#0" expanded="true" />
-            <element signature="e#5661#5669#0" expanded="true" />
-            <element signature="e#7083#7091#0" expanded="true" />
+            <element signature="e#5199#5207#0" expanded="true" />
+            <element signature="e#5634#5642#0" expanded="true" />
+            <element signature="e#5701#5709#0" expanded="true" />
+            <element signature="e#7123#7131#0" expanded="true" />
           </folding>
         </state>
       </provider>
