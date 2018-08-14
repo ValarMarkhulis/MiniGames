@@ -2,8 +2,9 @@ package com.example.chris.minigames.spil_fragmenter;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,16 +14,28 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.chris.minigames.R;
+import com.example.chris.minigames.Singleton;
 import com.example.chris.minigames.SpilActivity;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+
 public class highscore_frag extends Fragment implements View.OnClickListener {
+    private static final int MAX_NAME_LENGTH = 15;
+    View tl;
+    static String strengen = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d("Velkomst_frag", "fragmentet blev vist!");
+        Log.d("highscore_frag", "fragmentet blev vist!");
 
         // Programmatisk layout
-        View tl = inflater.inflate(R.layout.highscore_frag, container, false);
+
+        tl = inflater.inflate(R.layout.highscore_frag, container, false);
 
         Button btn_til_menu = tl.findViewById(R.id.btn_ToMenu_highscore);
         btn_til_menu.setOnClickListener(this);
@@ -30,17 +43,248 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
         Button btn_replay_highscore = tl.findViewById(R.id.btn_replay_highscore);
         btn_replay_highscore.setOnClickListener(this);
 
+        lav_Highscore();
 
+
+
+        return tl;
+    }
+
+    private void lav_Highscore() {
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+        /*
+        Husk for guds skyld at når du henter ud fra PreferenceManager i StringSet så er de blevet blandet
+        så de er ikke længere sorteret!
+        Du skal hente fra den også samle navn og score i en liste. Så skal du sortere dem over i en anden liste
+        hvor du kigger på alt efter det sidste mellemrum
+                (Sådan noget her lignende)'Streng.substring(Streng.lastIndexOf(" ")+1,Streng.length()))'
+        */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*
+        // Listen der skal vise navne og score sorteret via adapteren
+        List<String> list_med_navne;
+
+        //StringSet som indeholder navnene i usorteret rækkefølge
+        Set<String> navne;
+
+        //Henter værdierne der skal bruges
+        String nyt_navn = prefs.getString("spillernavn_key", "Standard Navn");
+        int ny_score = Singleton.point;
+
+        Set<String> fetch = prefs.getStringSet("navne", null);
+
+        //Findes listen?
+        if(fetch == null){ //Nej
+            navne = new HashSet<String>();
+
+            navne.add(nyt_navn);
+
+            Log.d("Navnet:", nyt_navn+ " blev tilføjet!");
+
+            //Tilføj navn og score, hvor navnet i stringsættet er nøglen til scoren
+            prefs.edit().
+                    putStringSet("navne",navne).
+                    putInt(nyt_navn, ny_score).
+                    apply();
+
+            // Opdater navnelisten
+            fetch = prefs.getStringSet("navne", null);
+            list_med_navne = new ArrayList<String>(fetch);
+
+        }else{
+            list_med_navne = new ArrayList<String>(fetch);
+
+            for (int i = 0; i < list_med_navne.size(); i++) {
+                if(list_med_navne.get(i).matches(nyt_navn)){ // Er navnet allerede på listen?
+                    if(prefs.getInt(nyt_navn, -1) < ny_score){ // Er den gamlescore < ny_score
+                        //Opdater scoren
+                        prefs.edit().
+                                putInt(nyt_navn, ny_score).
+                                apply();
+                    }else{
+                        i = list_med_navne.size();
+                    }
+                }else{ //Navnet findes ikke
+                    if(prefs.getInt(list_med_navne.get(i),-1) < ny_score){
+                        list_med_navne.add(i,nyt_navn);
+                    }
+
+                    if(i == list_med_navne.size()-1){ // Hvis scoren er den "nye" laveste score, tilføj den til bunden
+                        list_med_navne.add(nyt_navn);
+                    }
+                }
+            }
+        }
+
+
+        for (int i = 0; i < list_med_navne.size(); i++) {
+            Log.d("Navne listen sorteret::", "" + list_med_navne.get(i));
+        }
+        */
+
+
+
+
+
+
+        // Listen der skal vise navne og score sorteret via adapteren
+        List<String> list_med_navne = new ArrayList<String>();
+
+
+        //Henter værdierne der skal bruges
+        String nyt_navn = prefs.getString("spillernavn_key", "Standard Navn");
+        nyt_navn = nyt_navn.replaceAll("[^\\x20-\\x7E]", ""); // Frasorterer alle karaktere udover dem der er fra 20 til 126
+
+        if(nyt_navn.length() > MAX_NAME_LENGTH || nyt_navn.trim().equals("")){ // Hvis navnet er for langt eller kun indeholder mellemrum
+            nyt_navn = "Spillernavn";
+        }else{
+            nyt_navn = nyt_navn;
+        }
+
+        int ny_score = Singleton.point;
+        System.out.println(nyt_navn+" fik "+ny_score+" point");
+
+        Set<String> fetch = prefs.getStringSet("navne", null);
+        if(fetch == null){
+            Set<String> navne = new HashSet<String>();
+
+            navne.add(nyt_navn);
+
+            Log.d("Navnet ", nyt_navn+" er blevet tilføjet til navnelisten");
+            prefs.edit().
+                    putStringSet("navne",navne).
+                    putInt(nyt_navn, ny_score).
+                    apply();
+
+            list_med_navne.add(nyt_navn);
+            //fetch = prefs.getStringSet("navne", null);
+        }else{
+            Set<String> navne = new HashSet<String>();
+            List<String> list_usorteret = new ArrayList<String>(fetch);
+
+            boolean flag = false;
+
+            for (int i = 0; i < list_usorteret.size(); i++) {
+                navne.add(list_usorteret.get(i));
+                if(list_usorteret.get(i).matches(nyt_navn)){
+                    flag = true;
+                }
+            }
+
+            if(flag){ //Hvis navn allerede findes på listen
+                if(prefs.getInt(nyt_navn, -1) < ny_score){
+                    Log.d("Debug:", nyt_navn+"'s score blev overskrevet med "+ny_score);
+                    //Overskriv gammel score
+                    prefs.edit().
+                            putInt(nyt_navn, ny_score).
+                            apply();
+                }
+            }else{
+                Log.d("Debug:", nyt_navn+" blev tilføjet til navnelisten");
+                navne.add(nyt_navn);
+                prefs.edit().
+                        putInt(nyt_navn, ny_score).
+                        apply();
+            }
+
+
+
+            // Opdater Stringsættet der er usorteret
+            prefs.edit().
+                    putStringSet("navne",navne).
+                    apply();
+        }
+        //Herfra er Stringsættet med nyt navn og score
+
+        //Nu skal vi hente Stringsættet igen og begynde at opbygge den sorterede liste i list_med_navne
+
+        // Fetch og navnelist er usorteret
+        fetch = prefs.getStringSet("navne", null);
+        List<String> navnelist = new ArrayList<String>(fetch);
+
+
+        for (int i = 0; i < navnelist.size(); i++) {
+            Log.d("Debug:::", "navn = " + navnelist.get(i));
+        }
+
+
+        System.out.println("Printer navne + nummer");
+        for (int i = 0; i < navnelist.size(); i++) {
+            int point =prefs.getInt(navnelist.get(i), -1);
+            navnelist.set(i,navnelist.get(i)+ " "+ point);
+            System.out.println(navnelist.get(i)+"\n");
+        }
+
+
+        //Nu indeholder navnelist "navn score" i dette format
+        try{
+            int size = navnelist.size();
+            for (int i = 0; i < size; i++) {
+                int j = findmax(navnelist);
+                list_med_navne.add(navnelist.get(j));
+                navnelist.remove(j);
+                System.out.println("jeg kørte"+i);
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+
+
+
+        //og.d("fetching values", "fetch value " + prefs.getInt(nyt_navn,-1));
+
+        //Log.d("fetching values", "fetch value " + prefs.getInt("Christian",-1));
+        //Log.d("fetching values", "fetch value " + prefs.getInt("John",-1));
+        //Log.d("fetching values", "fetch value " + prefs.getInt("Peter",-1));
+       //Log.d("fetching values", "fetch value " + prefs.getInt("Hej",-1));
 
 
         String[] lande = { "Det her er et meget langt navn okay?", "Norge","Det her er et meget langt navn okay?","Det her er et meget langt navn okay?","Det her er et meget langt navn okay?","Det her er et meget langt navn okay?","Det her er et meget langt navn okay?"};
         ListView highScoreListen = (ListView) tl.findViewById(R.id.highscore_list);
         //ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1, lande);
-        ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.highscore_liste_design, R.id.navn_Highscorelisten, lande);
+        ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.highscore_liste_design, R.id.navn_Highscorelisten, list_med_navne);
 
         highScoreListen.setAdapter(adapter);
+    }
 
-        return tl;
+    private int findmax(List<String> navnelist) {
+        int max = -99999;
+        int index = 0;
+        for (int i = 0; i < navnelist.size(); i++) {
+            String Streng = navnelist.get(i);
+
+            int værdi = Integer.parseInt(Streng.substring(Streng.lastIndexOf(" ")+1,Streng.length()));
+            if( værdi > max){
+                max = værdi;
+                index = i;
+            }
+        }
+        return index;
     }
 
 

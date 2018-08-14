@@ -19,7 +19,7 @@ public class game_green_btn_frag extends Fragment implements View.OnClickListene
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d("Velkomst_frag", "fragmentet blev vist!");
+        Log.d("game_green_btn", "fragmentet blev vist!");
 
         // Programmatisk layout
         View tl = inflater.inflate(R.layout.game_green_btn_frag, container, false);

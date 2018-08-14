@@ -1,6 +1,8 @@
 package com.example.chris.minigames;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -18,6 +20,14 @@ public class velkomstAktivitet extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_velkomst_aktivitet);
 
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        //Sæt std spillernavn
+        prefs.
+                edit().
+                putString("spillernavn_key", "Navn").
+                commit();
+
+
         // Find knapper og opsæt
         btn_spil = findViewById(R.id.btn_play);
         btn_spil.setOnClickListener(this);
@@ -32,15 +42,16 @@ public class velkomstAktivitet extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.btn_play){
-            Intent Act_SpilActivity = new Intent(getApplicationContext(),SpilActivity.class);
+        if (v.getId() == R.id.btn_play) {
+            Intent Act_SpilActivity = new Intent(getApplicationContext(), SpilActivity.class);
             startActivity(Act_SpilActivity);
 
-        }else if(v.getId() == R.id.btn_settings){
+        } else if (v.getId() == R.id.btn_settings) {
+            //Gamle indstillinger side!
             /*Intent Act_indstillinger = new Intent(getApplicationContext(),IndstillingerActivity.class);
             startActivity(Act_indstillinger);*/
 
-            Intent Act_indstillinger = new Intent(getApplicationContext(),Indstillinger_akt.class);
+            Intent Act_indstillinger = new Intent(getApplicationContext(), Indstillinger_akt.class);
             startActivity(Act_indstillinger);
 
         }

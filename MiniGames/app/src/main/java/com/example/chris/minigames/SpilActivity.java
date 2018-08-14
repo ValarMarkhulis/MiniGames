@@ -28,7 +28,6 @@ public class SpilActivity extends AppCompatActivity {
 
     int spilnr;
     ArrayList<Fragment> spilListe;
-    public ArrayList<String> highScoreListe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +42,8 @@ public class SpilActivity extends AppCompatActivity {
                 View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
         if(savedInstanceState == null){
-        highScoreListe = new ArrayList<String>();
 
-        highScoreListe.add("Søren 14");
-        highScoreListe.add("Christian 12");
-        highScoreListe.add("Connie 10");
-
-        Singleton.point = 0; // Reset score
+        Singleton.point = 1; // Reset score
         text_ur = findViewById(R.id.text_ur);
         progressBar = findViewById(R.id.progressBar);
         text_score = findViewById(R.id.text_score);
@@ -62,6 +56,8 @@ public class SpilActivity extends AppCompatActivity {
         spilListe.add(new game_ligning_frag());
         spilListe.add(new game_green_btn_frag());
         spilListe.add(new highscore_frag());
+        spilnr = 0;
+
         skiftspil();
         }
 
@@ -80,18 +76,20 @@ public class SpilActivity extends AppCompatActivity {
     }
 
     private void startSpil() {
-        System.out.println("Ny spil er startet!");
-        spilnr++;
+
         int spil_length = 30000;
-        spil_length = 1000;
+        spil_length = 3000;
 
         if(spilListe.size() == 0){
+            System.out.println(spilnr+" spil blev spillet og highscore siden vises nu.");
             text_score.setVisibility(View.INVISIBLE);
             progressBar.setVisibility(View.INVISIBLE);
             text_ur.setVisibility(View.INVISIBLE);
             text_HighscoreListTitle.setVisibility(View.VISIBLE);
 
         }else {
+            spilnr++;
+            System.out.println("Spil nr. "+spilnr+" er startet!");
             new CountDownTimer(spil_length, 1000) {
 
                 public void onTick(long millisUntilFinished) {

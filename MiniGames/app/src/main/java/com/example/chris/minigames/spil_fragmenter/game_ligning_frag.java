@@ -33,7 +33,7 @@ public class game_ligning_frag extends Fragment  implements View.OnClickListener
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            Log.d("Velkomst_frag", "fragmentet blev vist!");
+            Log.d("game_ligning_frag", "fragmentet blev vist!");
 
             // Programmatisk layout
             View tl = inflater.inflate(R.layout.game_ligning_frag, container, false);
@@ -52,8 +52,6 @@ public class game_ligning_frag extends Fragment  implements View.OnClickListener
             if(savedInstanceState != null){
                 antalRigtigeText.setText(""+savedInstanceState.getString("antalRigtige"));
                 antalForkerteText.setText(""+savedInstanceState.getString("antalForkerte"));
-                Toast.makeText(getActivity(), ""+savedInstanceState.getString("antalForkerte"), Toast.LENGTH_LONG).show();
-                System.out.println("Skriver antal forkerte ud: "+savedInstanceState.getString("antalForkerte")+"");
             }else{
                 antalForkerteText.setText("0");
                 antalRigtigeText.setText("0");
@@ -124,7 +122,7 @@ public class game_ligning_frag extends Fragment  implements View.OnClickListener
         hvilkenKnapKorrekt = r.nextInt(antalKnapper);
         int result = 0;
 
-        System.out.println("Tal1 "+tal1+" Tal2: "+tal2+" Op: "+operator+" manglendetalplacering: "+manglendeTalPlacering);
+        //System.out.println("Tal1 "+tal1+" Tal2: "+tal2+" Op: "+operator+" manglendetalplacering: "+manglendeTalPlacering);
 
         String ligning = "";
         switch (operator){
