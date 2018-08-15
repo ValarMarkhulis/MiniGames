@@ -21,9 +21,11 @@ import com.example.chris.minigames.R;
 import com.example.chris.minigames.Singleton;
 import com.example.chris.minigames.SpilActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -64,7 +66,7 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
 
 
         //Henter værdierne der skal bruges og inputvalider brugerens navn
-
+        String date = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy").format(new Date());
         String nyt_navn = prefs.getString("spillernavn_key", "Standard Navn");
         nyt_navn = nyt_navn.replaceAll("[^\\x20-\\x7E]", ""); // Frasorterer alle karaktere udover dem der er fra 20 til 126
 
@@ -87,6 +89,7 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
             prefs.edit().
                     putStringSet("navne", navne).
                     putInt(nyt_navn, ny_score).
+                    putString("date_"+nyt_navn,date).
                     apply();
 
 
@@ -109,6 +112,7 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
                     //Overskriv gammel score
                     prefs.edit().
                             putInt(nyt_navn, ny_score).
+                            putString("date_"+nyt_navn,date).
                             apply();
                 }
             } else {
@@ -116,6 +120,7 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
                 navne.add(nyt_navn);
                 prefs.edit().
                         putInt(nyt_navn, ny_score).
+                        putString("date_"+nyt_navn,date).
                         apply();
             }
 
@@ -142,7 +147,8 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
         for (int i = 0; i < navnelist.size(); i++) {
             int point = prefs.getInt(navnelist.get(i), -1);
             String navn = navnelist.get(i);
-            Highscore person = new Highscore(navn, point);
+            String dato =prefs.getString("date_"+navn,"Fejl!");
+            Highscore person = new Highscore(navn, point, dato);
             System.out.println(person.toString());
             liste_med_personer.add(person);
         }
@@ -157,8 +163,10 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
             @Override
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
                 View v = super.getView(position, convertView, parent);
-                TextView text1 = v.findViewById(R.id.score_Highscorelisten);
-                text1.setText("" + liste_med_personer.get(position).score);
+                TextView score = v.findViewById(R.id.score_Highscorelisten);
+                score.setText("" + liste_med_personer.get(position).getScore());
+                TextView dato  = v.findViewById(R.id.dato_Highscorelisten);
+                dato.setText(liste_med_personer.get(position).getDato());
 
                 return v;
             }

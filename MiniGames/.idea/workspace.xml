@@ -10,8 +10,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba59801f-a296-41cf-a8be-b61b90f6b264" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/spil_fragmenter/Highscore.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/spil_fragmenter/Highscore_comparator.java" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" />
@@ -20,20 +18,11 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/IndstillingerActivity.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/Indstillinger_akt.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/Indstillinger_akt.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/Singleton.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/Singleton.java" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/SpilActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/SpilActivity.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/spil_fragmenter/game_green_btn_frag.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/spil_fragmenter/game_green_btn_frag.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/spil_fragmenter/game_ligning_frag.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/spil_fragmenter/game_ligning_frag.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/spil_fragmenter/Highscore.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/spil_fragmenter/Highscore.java" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/spil_fragmenter/highscore_frag.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/spil_fragmenter/highscore_frag.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/velkomstAktivitet.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/velkomstAktivitet.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_indstillinger.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_indstillinger.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/indstillinger.xml" afterPath="$PROJECT_DIR$/app/src/main/res/xml/indstillinger.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/highscore_liste_design.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/highscore_liste_design.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -64,6 +53,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="SpilActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/SpilActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="77" column="5" lean-forward="true" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="game_ligning_frag.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/spil_fragmenter/game_ligning_frag.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -71,54 +70,6 @@
               <caret line="110" column="65" lean-forward="false" selection-start-line="110" selection-start-column="65" selection-end-line="110" selection-end-column="65" />
               <folding>
                 <element signature="class#2831:3386" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="game_green_btn_frag.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/spil_fragmenter/game_green_btn_frag.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="43" column="8" lean-forward="false" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="highscore_frag.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/spil_fragmenter/highscore_frag.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="64" column="0" lean-forward="true" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-              <folding>
-                <element signature="e#2806#2814#0" expanded="true" />
-                <element signature="e#3148#3156#0" expanded="true" />
-                <element signature="e#3215#3223#0" expanded="true" />
-                <element signature="e#4603#4611#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Highscore_comparator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/spil_fragmenter/Highscore_comparator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Highscore.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/spil_fragmenter/Highscore.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="17" column="20" lean-forward="false" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
-              <folding>
-                <element signature="e#348#349#0" expanded="true" />
-                <element signature="e#376#377#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -166,6 +117,10 @@
       <find>fik</find>
       <find>navnelist</find>
       <find>fetch</find>
+      <find>Debug</find>
+      <find>get</find>
+      <find>getScore()</find>
+      <find>getScore</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -2193,10 +2148,11 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/spil_fragmenter/game_green_btn_frag.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/Singleton.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/spil_fragmenter/highscore.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/SpilActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/spil_fragmenter/Highscore_comparator.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/spil_fragmenter/Highscore.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/spil_fragmenter/highscore_frag.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/highscore_liste_design.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/SpilActivity.java" />
       </list>
     </option>
   </component>
@@ -2439,6 +2395,14 @@
       <option name="presentableId" value="Default" />
       <updated>1534333618407</updated>
     </task>
+    <task id="LOCAL-00001" summary="Navne listen og highscoren bliver nu håndteret lidt klogere..">
+      <created>1534345416999</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1534345416999</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2478,6 +2442,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Navne listen og highscoren bliver nu håndteret lidt klogere.." />
+    <option name="LAST_COMMIT_MESSAGE" value="Navne listen og highscoren bliver nu håndteret lidt klogere.." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2527,39 +2495,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/highscore_frag.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/highscore_liste_design.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/SpilActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="82" column="23" lean-forward="false" selection-start-line="82" selection-start-column="23" selection-end-line="82" selection-end-column="23" />
-          <folding>
-            <element signature="e#4121#4122#0" expanded="false" />
-            <element signature="e#4177#4178#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/Singleton.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="303">
@@ -2585,45 +2520,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/Indstillinger_akt.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="828">
-          <caret line="55" column="9" lean-forward="false" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
-          <folding>
-            <element signature="e#1072#1287#0" expanded="true" />
-            <element signature="e#1286#1287#0" expanded="true" />
-            <element signature="e#1431#1670#0" expanded="true" />
-            <element signature="e#1669#1670#0" expanded="true" />
-          </folding>
-        </state>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/highscore_frag.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/spil_fragmenter/game_ligning_frag.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="110" column="65" lean-forward="false" selection-start-line="110" selection-start-column="65" selection-end-line="110" selection-end-column="65" />
-          <folding>
-            <element signature="class#2831:3386" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/spil_fragmenter/game_green_btn_frag.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="43" column="8" lean-forward="false" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/spil_fragmenter/Highscore.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="17" column="20" lean-forward="false" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+        <state relative-caret-position="321">
+          <caret line="23" column="27" lean-forward="false" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="27" />
           <folding>
-            <element signature="e#348#349#0" expanded="true" />
-            <element signature="e#376#377#0" expanded="true" />
+            <element signature="e#329#330#0" expanded="true" />
+            <element signature="e#356#357#0" expanded="true" />
+            <element signature="e#385#386#0" expanded="true" />
+            <element signature="e#413#414#0" expanded="true" />
+            <element signature="e#444#445#0" expanded="true" />
+            <element signature="e#471#472#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/highscore_liste_design.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2637,14 +2567,53 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/spil_fragmenter/highscore_frag.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="64" column="0" lean-forward="true" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+        <state relative-caret-position="126">
+          <caret line="68" column="52" lean-forward="false" selection-start-line="68" selection-start-column="52" selection-end-line="68" selection-end-column="52" />
           <folding>
-            <element signature="e#2806#2814#0" expanded="true" />
-            <element signature="e#3148#3156#0" expanded="true" />
-            <element signature="e#3215#3223#0" expanded="true" />
-            <element signature="e#4603#4611#0" expanded="true" />
+            <element signature="e#2949#2957#0" expanded="true" />
+            <element signature="e#3345#3353#0" expanded="true" />
+            <element signature="e#3412#3420#0" expanded="true" />
+            <element signature="e#4920#4928#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/spil_fragmenter/game_green_btn_frag.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="43" column="8" lean-forward="false" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/spil_fragmenter/game_ligning_frag.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="110" column="65" lean-forward="false" selection-start-line="110" selection-start-column="65" selection-end-line="110" selection-end-column="65" />
+          <folding>
+            <element signature="class#2831:3386" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/Indstillinger_akt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="828">
+          <caret line="55" column="9" lean-forward="false" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
+          <folding>
+            <element signature="e#1072#1287#0" expanded="true" />
+            <element signature="e#1286#1287#0" expanded="true" />
+            <element signature="e#1431#1670#0" expanded="true" />
+            <element signature="e#1669#1670#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/chris/minigames/SpilActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="77" column="5" lean-forward="true" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
