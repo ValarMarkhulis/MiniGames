@@ -75,6 +75,7 @@ public class game_ligning_frag extends Fragment  implements View.OnClickListener
                 view == svar3 && hvilkenKnapKorrekt == 2 || view == svar4 && hvilkenKnapKorrekt == 3){
             Toast.makeText(getActivity(), "Korrekt!", Toast.LENGTH_LONG).show();
             Singleton.point++;
+            Singleton.opdater();
 
             flueben.setImageResource(R.drawable.checkmark1);
             flueben.setVisibility(View.VISIBLE);
@@ -104,6 +105,7 @@ public class game_ligning_frag extends Fragment  implements View.OnClickListener
         }else{
             Toast.makeText(getActivity(), "Forkert!", Toast.LENGTH_LONG).show();
             Singleton.point--;
+            Singleton.opdater();
             flueben.setImageResource(R.drawable.an_x);
             flueben.setVisibility(View.VISIBLE);
             antalForkerteText.setText(""+(Integer.parseInt(antalForkerteText.getText().toString())+1));

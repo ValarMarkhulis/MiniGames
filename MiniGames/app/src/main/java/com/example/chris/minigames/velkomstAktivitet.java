@@ -14,30 +14,35 @@ public class velkomstAktivitet extends AppCompatActivity implements View.OnClick
 
     Button btn_spil;
     Button btn_indstillinger;
+    public static final String checkbox_key = "checkbox_globalScore";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_velkomst_aktivitet);
-
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        //Sæt std spillernavn
-        prefs.
-                edit().
-                putString("spillernavn_key", "Navn").
-                commit();
+        if(savedInstanceState == null){
 
 
-        // Find knapper og opsæt
-        btn_spil = findViewById(R.id.btn_play);
-        btn_spil.setOnClickListener(this);
-        btn_indstillinger = findViewById(R.id.btn_settings);
-        btn_indstillinger.setOnClickListener(this);
-        DisplayMetrics displaymetrics = new DisplayMetrics();
-        this.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        Singleton.win_bredde = displaymetrics.widthPixels;
-        Singleton.win_hoejde = displaymetrics.heightPixels;
+            setContentView(R.layout.activity_velkomst_aktivitet);
 
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            //Sæt std spillernavn
+            prefs.
+                    edit().
+                    putString("spillernavn_key", "Navn").
+                    commit();
+
+
+
+            // Find knapper og opsæt
+            btn_spil = findViewById(R.id.btn_play);
+            btn_spil.setOnClickListener(this);
+            btn_indstillinger = findViewById(R.id.btn_settings);
+            btn_indstillinger.setOnClickListener(this);
+            DisplayMetrics displaymetrics = new DisplayMetrics();
+            this.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+            Singleton.win_bredde = displaymetrics.widthPixels;
+            Singleton.win_hoejde = displaymetrics.heightPixels;
+        }
     }
 
     @Override
@@ -47,9 +52,6 @@ public class velkomstAktivitet extends AppCompatActivity implements View.OnClick
             startActivity(Act_SpilActivity);
 
         } else if (v.getId() == R.id.btn_settings) {
-            //Gamle indstillinger side!
-            /*Intent Act_indstillinger = new Intent(getApplicationContext(),IndstillingerActivity.class);
-            startActivity(Act_indstillinger);*/
 
             Intent Act_indstillinger = new Intent(getApplicationContext(), Indstillinger_akt.class);
             startActivity(Act_indstillinger);

@@ -19,7 +19,7 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class SpilActivity extends AppCompatActivity {
+public class SpilActivity extends AppCompatActivity implements Runnable {
 
     TextView text_ur;
     ProgressBar progressBar;
@@ -33,6 +33,8 @@ public class SpilActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spil);
+
+        Singleton.abboner(this);
 
         this.getWindow().getDecorView();
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN |
@@ -78,7 +80,7 @@ public class SpilActivity extends AppCompatActivity {
     private void startSpil() {
 
         int spil_length = 30000;
-        spil_length = 3000;
+        spil_length = 2000;
 
         if(spilListe.size() == 0){
             System.out.println(spilnr+" spil blev spillet og highscore siden vises nu.");
@@ -130,4 +132,14 @@ public class SpilActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void run() {
+        text_score.setText("" + Singleton.point);
+    }
+
+    @Override
+    protected void onDestroy() {
+        Singleton.liste_run.remove(this);
+        super.onDestroy();
+    }
 }

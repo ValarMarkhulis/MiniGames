@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.widget.Button;
+import android.widget.CheckBox;
 
 public class Indstillinger_akt extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     public static final String navne_key = "spillernavn_key";
@@ -17,6 +19,7 @@ public class Indstillinger_akt extends PreferenceActivity implements SharedPrefe
          SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
          //Sæt summary på "spillernavn"
          findPreference("spillernavn_key").setSummary(""+prefs.getString("spillernavn_key", "Standard Navn"));
+
 
 
          //Todo: Ændre denne knap så den resetter highscoren!
@@ -46,12 +49,13 @@ public class Indstillinger_akt extends PreferenceActivity implements SharedPrefe
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if(key.equals(navne_key)){
+            System.out.println("Navnet blev ændret");
             Preference connectionPref = findPreference(key);
             // Set summary to be the user-description for the selected value
             connectionPref.setSummary(sharedPreferences.getString(key, ""));
         }
-
     }
+
     @Override
     protected void onResume() {
         super.onResume();
