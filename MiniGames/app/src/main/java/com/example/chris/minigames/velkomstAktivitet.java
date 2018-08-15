@@ -19,10 +19,11 @@ public class velkomstAktivitet extends AppCompatActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_velkomst_aktivitet);
         if(savedInstanceState == null){
 
 
-            setContentView(R.layout.activity_velkomst_aktivitet);
+
 
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
             //Sæt std spillernavn
@@ -30,19 +31,16 @@ public class velkomstAktivitet extends AppCompatActivity implements View.OnClick
                     edit().
                     putString("spillernavn_key", "Navn").
                     commit();
-
-
-
-            // Find knapper og opsæt
-            btn_spil = findViewById(R.id.btn_play);
-            btn_spil.setOnClickListener(this);
-            btn_indstillinger = findViewById(R.id.btn_settings);
-            btn_indstillinger.setOnClickListener(this);
-            DisplayMetrics displaymetrics = new DisplayMetrics();
-            this.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-            Singleton.win_bredde = displaymetrics.widthPixels;
-            Singleton.win_hoejde = displaymetrics.heightPixels;
         }
+        // Find knapper og opsæt
+        btn_spil = findViewById(R.id.btn_play);
+        btn_spil.setOnClickListener(this);
+        btn_indstillinger = findViewById(R.id.btn_settings);
+        btn_indstillinger.setOnClickListener(this);
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        this.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        Singleton.win_bredde = displaymetrics.widthPixels;
+        Singleton.win_hoejde = displaymetrics.heightPixels;
     }
 
     @Override

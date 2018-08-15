@@ -28,6 +28,7 @@ public class SpilActivity extends AppCompatActivity implements Runnable {
 
     int spilnr;
     ArrayList<Fragment> spilListe;
+    CountDownTimer cdt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +81,7 @@ public class SpilActivity extends AppCompatActivity implements Runnable {
     private void startSpil() {
 
         int spil_length = 30000;
-        spil_length = 1000;
+        spil_length = 5000;
 
         if(spilListe.size() == 0){
             System.out.println(spilnr+" spil blev spillet og highscore siden vises nu.");
@@ -92,7 +93,7 @@ public class SpilActivity extends AppCompatActivity implements Runnable {
         }else {
             spilnr++;
             System.out.println("Spil nr. "+spilnr+" er startet!");
-            new CountDownTimer(spil_length, 1000) {
+            cdt = new CountDownTimer(spil_length, 1000) {
 
                 public void onTick(long millisUntilFinished) {
                     text_ur.setText("" + millisUntilFinished / 1000);
@@ -139,7 +140,8 @@ public class SpilActivity extends AppCompatActivity implements Runnable {
 
     @Override
     protected void onDestroy() {
-        Singleton.liste_run.remove(this);
+        Singleton.afregister(this);
+        cdt.cancel();
         super.onDestroy();
     }
 }

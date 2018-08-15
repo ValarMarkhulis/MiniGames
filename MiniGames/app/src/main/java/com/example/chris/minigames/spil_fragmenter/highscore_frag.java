@@ -63,6 +63,7 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
 
         //Holder listen der vises med Adapteren i listviewet
         liste_med_personer = new ArrayList<Highscore>();
+        Set<String> fetch;
 
 
         //Henter værdierne der skal bruges og inputvalider brugerens navn
@@ -79,7 +80,7 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
         int ny_score = Singleton.point;
         System.out.println(nyt_navn + " fik " + ny_score + " point");
 
-        Set<String> fetch = prefs.getStringSet("navne", null);
+        fetch = prefs.getStringSet("navne", null);
         if (fetch == null) {
             Set<String> navne = new HashSet<String>();
 
@@ -89,7 +90,7 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
             prefs.edit().
                     putStringSet("navne", navne).
                     putInt(nyt_navn, ny_score).
-                    putString("date_"+nyt_navn,date).
+                    putString("date_" + nyt_navn, date).
                     apply();
 
 
@@ -112,7 +113,7 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
                     //Overskriv gammel score
                     prefs.edit().
                             putInt(nyt_navn, ny_score).
-                            putString("date_"+nyt_navn,date).
+                            putString("date_" + nyt_navn, date).
                             apply();
                 }
             } else {
@@ -120,7 +121,7 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
                 navne.add(nyt_navn);
                 prefs.edit().
                         putInt(nyt_navn, ny_score).
-                        putString("date_"+nyt_navn,date).
+                        putString("date_" + nyt_navn, date).
                         apply();
             }
 
@@ -134,9 +135,25 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
         }
 
         // Fetch og navnelist er usorteret
+
         fetch = prefs.getStringSet("navne", null);
         List<String> navnelist = new ArrayList<String>(fetch);
 
+
+        //Debug: Sæt navne ind i listen
+        /*
+        for(int i = 0;i <33; i++) {
+            navnelist.add("Christian 100");
+            navnelist.add("ChristianM 1000");
+            navnelist.add("Troels 20");
+            navnelist.add("John 5");
+            navnelist.add("Pia 1");
+            navnelist.add("Petra 123");
+            navnelist.add("Sudo 420");
+            navnelist.add("Huawei 93");
+            navnelist.add("Hvad sa? 39");
+        }
+        */
 
         for (int i = 0; i < navnelist.size(); i++) {
             Log.d("Debug:::", "navn = " + navnelist.get(i));
