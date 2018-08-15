@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.chris.minigames.R;
 import com.example.chris.minigames.Singleton;
@@ -54,105 +56,9 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-        /*
-        Husk for guds skyld at når du henter ud fra PreferenceManager i StringSet så er de blevet blandet
-        så de er ikke længere sorteret!
-        Du skal hente fra den også samle navn og score i en liste. Så skal du sortere dem over i en anden liste
-        hvor du kigger på alt efter det sidste mellemrum
-                (Sådan noget her lignende)'Streng.substring(Streng.lastIndexOf(" ")+1,Streng.length()))'
-        */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /*
-        // Listen der skal vise navne og score sorteret via adapteren
-        List<String> list_med_navne;
-
-        //StringSet som indeholder navnene i usorteret rækkefølge
-        Set<String> navne;
-
-        //Henter værdierne der skal bruges
-        String nyt_navn = prefs.getString("spillernavn_key", "Standard Navn");
-        int ny_score = Singleton.point;
-
-        Set<String> fetch = prefs.getStringSet("navne", null);
-
-        //Findes listen?
-        if(fetch == null){ //Nej
-            navne = new HashSet<String>();
-
-            navne.add(nyt_navn);
-
-            Log.d("Navnet:", nyt_navn+ " blev tilføjet!");
-
-            //Tilføj navn og score, hvor navnet i stringsættet er nøglen til scoren
-            prefs.edit().
-                    putStringSet("navne",navne).
-                    putInt(nyt_navn, ny_score).
-                    apply();
-
-            // Opdater navnelisten
-            fetch = prefs.getStringSet("navne", null);
-            list_med_navne = new ArrayList<String>(fetch);
-
-        }else{
-            list_med_navne = new ArrayList<String>(fetch);
-
-            for (int i = 0; i < list_med_navne.size(); i++) {
-                if(list_med_navne.get(i).matches(nyt_navn)){ // Er navnet allerede på listen?
-                    if(prefs.getInt(nyt_navn, -1) < ny_score){ // Er den gamlescore < ny_score
-                        //Opdater scoren
-                        prefs.edit().
-                                putInt(nyt_navn, ny_score).
-                                apply();
-                    }else{
-                        i = list_med_navne.size();
-                    }
-                }else{ //Navnet findes ikke
-                    if(prefs.getInt(list_med_navne.get(i),-1) < ny_score){
-                        list_med_navne.add(i,nyt_navn);
-                    }
-
-                    if(i == list_med_navne.size()-1){ // Hvis scoren er den "nye" laveste score, tilføj den til bunden
-                        list_med_navne.add(nyt_navn);
-                    }
-                }
-            }
-        }
-
-
-        for (int i = 0; i < list_med_navne.size(); i++) {
-            Log.d("Navne listen sorteret::", "" + list_med_navne.get(i));
-        }
-        */
-
-
-
-
-
-
         // Listen der skal vise navne og score sorteret via adapteren
         List<String> list_med_navne = new ArrayList<String>();
+        List<String> list_med_score = new ArrayList<String>();
 
 
         //Henter værdierne der skal bruges
@@ -180,7 +86,9 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
                     putInt(nyt_navn, ny_score).
                     apply();
 
-            list_med_navne.add(nyt_navn);
+            Toast.makeText(getActivity(), nyt_navn+" fik "+ny_score+ "point", Toast.LENGTH_LONG).show();
+
+            //list_med_navne.add(nyt_navn);
             //fetch = prefs.getStringSet("navne", null);
         }else{
             Set<String> navne = new HashSet<String>();
@@ -202,6 +110,7 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
                     prefs.edit().
                             putInt(nyt_navn, ny_score).
                             apply();
+                    Toast.makeText(getActivity(), nyt_navn+" fik "+ny_score+ "point", Toast.LENGTH_LONG).show();
                 }
             }else{
                 Log.d("Debug:", nyt_navn+" blev tilføjet til navnelisten");
@@ -209,6 +118,7 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
                 prefs.edit().
                         putInt(nyt_navn, ny_score).
                         apply();
+                Toast.makeText(getActivity(), nyt_navn+" fik "+ny_score+ "point", Toast.LENGTH_LONG).show();
             }
 
 
@@ -245,7 +155,7 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
             int size = navnelist.size();
             for (int i = 0; i < size; i++) {
                 int j = findmax(navnelist);
-                list_med_navne.add(navnelist.get(j));
+                list_med_navne.add(navnelist.get(j).substring(0,navnelist.get(j).lastIndexOf(" ")));
                 navnelist.remove(j);
                 System.out.println("jeg kørte"+i);
             }
