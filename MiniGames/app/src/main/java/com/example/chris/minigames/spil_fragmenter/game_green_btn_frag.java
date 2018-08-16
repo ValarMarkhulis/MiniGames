@@ -27,8 +27,8 @@ public class game_green_btn_frag extends Fragment implements View.OnClickListene
         knap = tl.findViewById(R.id.pic_GreenBtn);
         knap.setOnClickListener(this);
 
-        View skærmen = tl.findViewById(R.id.layout_GreenBtn);
-        skærmen.setOnClickListener(this);
+        View screen = tl.findViewById(R.id.layout_GreenBtn);
+        screen.setOnClickListener(this);
 
         return tl;
     }
@@ -48,4 +48,5 @@ public class game_green_btn_frag extends Fragment implements View.OnClickListene
         knap.setY((r.nextInt(Singleton.win_hoejde))/2);
 
     }
+
 }

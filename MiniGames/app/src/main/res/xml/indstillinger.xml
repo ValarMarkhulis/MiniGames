@@ -22,7 +22,9 @@
         <Preference
             android:key="reset_highscore"
             android:title="Nulstil lokal highscore" />
-        <Preference android:title="Gå Til Hovedmenuen" android:key="Go_to_menu"/>
+        <Preference
+            android:key="Go_to_menu"
+            android:title="Gå til hovedmenuen" />
     </PreferenceCategory>
 
 

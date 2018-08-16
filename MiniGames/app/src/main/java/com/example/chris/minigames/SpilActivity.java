@@ -2,6 +2,7 @@ package com.example.chris.minigames;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.chris.minigames.spil_fragmenter.game_green_btn_frag;
 import com.example.chris.minigames.spil_fragmenter.game_ligning_frag;
@@ -58,6 +60,7 @@ public class SpilActivity extends AppCompatActivity implements Runnable {
         spilListe= new ArrayList<Fragment>();
         spilListe.add(new game_ligning_frag());
         spilListe.add(new game_green_btn_frag());
+        //Todo: Tilføj flere spil til spillisten!
         spilListe.add(new highscore_frag());
         spilnr = 0;
 
@@ -135,13 +138,25 @@ public class SpilActivity extends AppCompatActivity implements Runnable {
 
     @Override
     public void run() {
+        if (Integer.parseInt(text_score.getText().toString()) < Singleton.point){
+            text_score.setTextColor(getResources().getColor(R.color.green));
+        }else{
+            text_score.setTextColor(getResources().getColor(R.color.red));
+        }
+
         text_score.setText("" + Singleton.point);
     }
 
     @Override
     protected void onDestroy() {
         Singleton.afregister(this);
-        cdt.cancel();
+
+        //Stop countdowntimeren hvis den stadig er igang, så der ikke sker nullpointerException
+        if(cdt != null){
+            cdt.cancel();
+        }
+
         super.onDestroy();
     }
+
 }

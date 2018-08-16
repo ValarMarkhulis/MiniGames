@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#6fff4081</color>
 
+    <color name="red">#ffcc0000</color>
+    <color name="green">#ff99cc00</color>
     <color name="black_overlay">#66000000</color>
     <color name="colorBackground">#e8fafafa</color>
     <color name="foreground_material_light">#dd1313</color>

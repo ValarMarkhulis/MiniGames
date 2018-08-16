@@ -1,10 +1,10 @@
-package com.example.chris.minigames.spil_fragmenter;
+package com.example.chris.minigames.spil_fragmenter.Highscore_javahelperclasses;
 
 public class Highscore {
 
-    String navn = "";
-    int score = 0;
-    String dato = "";
+    private String navn;
+    private int score;
+    private String dato;
 
     public Highscore(String navn, int point, String dato) {
         this.navn = navn;

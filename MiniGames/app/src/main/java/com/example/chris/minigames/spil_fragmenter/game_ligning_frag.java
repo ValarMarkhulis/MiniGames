@@ -30,8 +30,9 @@ public class game_ligning_frag extends Fragment  implements View.OnClickListener
     int hvilkenKnapKorrekt;
     TextView antalRigtigeText;
     TextView antalForkerteText;
+    private Toast mToast;
 
-        @Override
+    @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             Log.d("game_ligning_frag", "fragmentet blev vist!");
 
@@ -73,7 +74,9 @@ public class game_ligning_frag extends Fragment  implements View.OnClickListener
 
         if(view == svar1 && hvilkenKnapKorrekt == 0 || view == svar2 && hvilkenKnapKorrekt == 1 ||
                 view == svar3 && hvilkenKnapKorrekt == 2 || view == svar4 && hvilkenKnapKorrekt == 3){
-            Toast.makeText(getActivity(), "Korrekt!", Toast.LENGTH_LONG).show();
+
+            showAToast("Korrekt!");
+            //Toast.makeText(getActivity(), "Korrekt!", Toast.LENGTH_LONG).show();
             Singleton.point++;
             Singleton.opdater();
 
@@ -103,7 +106,8 @@ public class game_ligning_frag extends Fragment  implements View.OnClickListener
 
             antalRigtigeText.setText(""+(Integer.parseInt(antalRigtigeText.getText().toString())+1));
         }else{
-            Toast.makeText(getActivity(), "Forkert!", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getActivity(), "Forkert!", Toast.LENGTH_LONG).show();
+            showAToast("Forkert!");
             Singleton.point--;
             Singleton.opdater();
             flueben.setImageResource(R.drawable.an_x);
@@ -223,6 +227,23 @@ public class game_ligning_frag extends Fragment  implements View.OnClickListener
         outState.putString("antalRigtige",antalRigtigeText.getText().toString());
         outState.putString("antalForkerte",antalForkerteText.getText().toString());
         super.onSaveInstanceState(outState);
+    }
+
+    public void showAToast (String message){
+        if (mToast != null) {
+            mToast.cancel();
+        }
+        mToast = Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT);
+        mToast.show();
+    }
+
+    @Override
+    public void onStop() {
+        if(mToast != null){
+            mToast.cancel();
+        }
+
+        super.onStop();
     }
 
 }

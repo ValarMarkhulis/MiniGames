@@ -20,10 +20,11 @@ import android.widget.Toast;
 import com.example.chris.minigames.R;
 import com.example.chris.minigames.Singleton;
 import com.example.chris.minigames.SpilActivity;
+import com.example.chris.minigames.spil_fragmenter.Highscore_javahelperclasses.Highscore;
+import com.example.chris.minigames.spil_fragmenter.Highscore_javahelperclasses.Highscore_comparator;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
@@ -57,9 +58,13 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
     }
 
     private void lav_Highscore() {
+        //Todo: Check om "Global Highscore" er slået til i indstillinger.
+        // Hvis den er, så upload den lokales højeste score til db
+        // og hent Highscore listen fra nettet af i sorteret rækkefølge
+
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        ListView highScoreListen = (ListView) tl.findViewById(R.id.highscore_list);
+        ListView highScoreListen = tl.findViewById(R.id.highscore_list);
 
         //Holder listen der vises med Adapteren i listviewet
         liste_med_personer = new ArrayList<Highscore>();
