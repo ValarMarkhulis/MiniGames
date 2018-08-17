@@ -29,15 +29,18 @@ public class velkomstAktivitet extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_velkomst_aktivitet);
 
-        if(savedInstanceState == null){
 
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-            //Sæt std spillernavn
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        //Sæt std spillernavn, hvis brugeren ikke har sat et endnu
+        if(prefs.getString("spillernavn_key","fejl") == "fejl"){
             prefs.
                     edit().
                     putString("spillernavn_key", "Navn").
                     apply();
         }
+
+
 
         // Find knapper og opsæt
         btn_spil = findViewById(R.id.btn_play);
