@@ -15,6 +15,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+
 public class velkomstAktivitet extends AppCompatActivity implements View.OnClickListener {
 
 
@@ -28,7 +33,6 @@ public class velkomstAktivitet extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_velkomst_aktivitet);
-
 
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -56,7 +60,6 @@ public class velkomstAktivitet extends AppCompatActivity implements View.OnClick
 
         int orientation = this.getResources().getConfiguration().orientation;
         vendt_rigtigt = orientation == 1;
-
 
     }
 
@@ -87,19 +90,7 @@ public class velkomstAktivitet extends AppCompatActivity implements View.OnClick
 
     }
 
-    /*
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
 
-        // Checks the orientation of the screen
-        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            vendt_rigtigt = false;
-        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
-            vendt_rigtigt = true;
-        }
-    }
-*/
     @Override
     protected void onPause() {
         if(t != null){

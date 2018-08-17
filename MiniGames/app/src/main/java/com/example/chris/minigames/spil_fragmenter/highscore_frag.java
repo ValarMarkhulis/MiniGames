@@ -22,6 +22,10 @@ import com.example.chris.minigames.Singleton;
 import com.example.chris.minigames.SpilActivity;
 import com.example.chris.minigames.spil_fragmenter.Highscore_javahelperclasses.Highscore;
 import com.example.chris.minigames.spil_fragmenter.Highscore_javahelperclasses.Highscore_comparator;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,6 +40,7 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
     private static final int MAX_NAME_LENGTH = 15;
     View tl;
     List<Highscore> liste_med_personer;
+    Firebase myFireBaseref;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -85,99 +90,130 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
         int ny_score = Singleton.point;
         System.out.println(nyt_navn + " fik " + ny_score + " point");
 
-        fetch = prefs.getStringSet("navne", null);
-        if (fetch == null) {
-            Set<String> navne = new HashSet<String>();
 
-            navne.add(nyt_navn);
+        if(prefs.getBoolean("checkbox_globalScore",false)){ // Hvis der er globalScore
+            myFireBaseref = new Firebase("https://minigames-719df.firebaseio.com/");
+        /*
+        Firebase personer = myFireBaseref.child("v0").child("personer");
+        personer.child("1Christian").setValue("13:33:37 04-20-0420 & 1000");
+        personer.child("Dorthe").setValue("13:33:37 04-20-0420 & 900");
+        personer.child("4Valdemar").setValue("13:33:37 04-20-0420 & 700");
+        personer.child("0Tristan").setValue("13:33:37 04-20-0420 & 0");
 
-            Log.d("Navnet ", nyt_navn + " er blevet tilføjet til navnelisten");
-            prefs.edit().
-                    putStringSet("navne", navne).
-                    putInt(nyt_navn, ny_score).
-                    putString("date_" + nyt_navn, date).
-                    apply();
+*/
+            Firebase personer2 = myFireBaseref.child("v0").child("personer").child("Christian");
 
 
-        } else {
-            Set<String> navne = new HashSet<String>();
-            List<String> list_usorteret = new ArrayList<String>(fetch);
-
-            boolean flag = false;
-
-            for (int i = 0; i < list_usorteret.size(); i++) {
-                navne.add(list_usorteret.get(i));
-                if (list_usorteret.get(i).matches(nyt_navn)) {
-                    flag = true;
+            personer2.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String text = dataSnapshot.getValue(String.class);
+                    //btn_spil.setText(text);
                 }
-            }
 
-            if (flag) { //Hvis navn allerede findes på listen
-                if (prefs.getInt(nyt_navn, -1) < ny_score) {
-                    Log.d("Debug:", nyt_navn + "'s score blev overskrevet med " + ny_score);
-                    //Overskriv gammel score
+                @Override
+                public void onCancelled(FirebaseError firebaseError) {
+
+                }
+            });
+
+        }else{
+
+
+
+            fetch = prefs.getStringSet("navne", null);
+            if (fetch == null) {
+                Set<String> navne = new HashSet<String>();
+
+                navne.add(nyt_navn);
+
+                Log.d("Navnet ", nyt_navn + " er blevet tilføjet til navnelisten");
+                prefs.edit().
+                        putStringSet("navne", navne).
+                        putInt(nyt_navn, ny_score).
+                        putString("date_" + nyt_navn, date).
+                        apply();
+
+
+            } else {
+                Set<String> navne = new HashSet<String>();
+                List<String> list_usorteret = new ArrayList<String>(fetch);
+
+                boolean flag = false;
+
+                for (int i = 0; i < list_usorteret.size(); i++) {
+                    navne.add(list_usorteret.get(i));
+                    if (list_usorteret.get(i).matches(nyt_navn)) {
+                        flag = true;
+                    }
+                }
+
+                if (flag) { //Hvis navn allerede findes på listen
+                    if (prefs.getInt(nyt_navn, -1) < ny_score) {
+                        Log.d("Debug:", nyt_navn + "'s score blev overskrevet med " + ny_score);
+                        //Overskriv gammel score
+                        prefs.edit().
+                                putInt(nyt_navn, ny_score).
+                                putString("date_" + nyt_navn, date).
+                                apply();
+                    }
+                } else {
+                    Log.d("Debug:", nyt_navn + " blev tilføjet til navnelisten");
+                    navne.add(nyt_navn);
                     prefs.edit().
                             putInt(nyt_navn, ny_score).
                             putString("date_" + nyt_navn, date).
                             apply();
                 }
-            } else {
-                Log.d("Debug:", nyt_navn + " blev tilføjet til navnelisten");
-                navne.add(nyt_navn);
+
+                Toast.makeText(getActivity(), nyt_navn + " fik " + ny_score + " point", Toast.LENGTH_LONG).show();
+
+
+                // Opdater Stringsættet der er usorteret
                 prefs.edit().
-                        putInt(nyt_navn, ny_score).
-                        putString("date_" + nyt_navn, date).
+                        putStringSet("navne", navne).
                         apply();
             }
 
-            Toast.makeText(getActivity(), nyt_navn + " fik " + ny_score + " point", Toast.LENGTH_LONG).show();
+            // Fetch og navnelist er usorteret
+            fetch = prefs.getStringSet("navne", null);
+            List<String> navnelist = new ArrayList<String>(fetch);
 
 
-            // Opdater Stringsættet der er usorteret
-            prefs.edit().
-                    putStringSet("navne", navne).
-                    apply();
+            //Debug: Sæt navne ind i listen
+            /*
+            for(int i = 0;i <33; i++) {
+                navnelist.add("Christian 100");
+                navnelist.add("ChristianM 1000");
+                navnelist.add("Troels 20");
+                navnelist.add("John 5");
+                navnelist.add("Pia 1");
+                navnelist.add("Petra 123");
+                navnelist.add("Sudo 420");
+                navnelist.add("Huawei 93");
+                navnelist.add("Hvad sa? 39");
+            }
+            */
+
+            for (int i = 0; i < navnelist.size(); i++) {
+                Log.d("Debug:::", "navn = " + navnelist.get(i));
+            }
+
+
+            System.out.println("Printer navne + nummer");
+            for (int i = 0; i < navnelist.size(); i++) {
+                int point = prefs.getInt(navnelist.get(i), -1);
+                String navn = navnelist.get(i);
+                String dato =prefs.getString("date_"+navn,"Fejl!");
+                Highscore person = new Highscore(navn, point, dato);
+                System.out.println(person.toString());
+                liste_med_personer.add(person);
+            }
+
+            //Sortere navnene udfra scoren
+            Highscore_comparator sammenligner = new Highscore_comparator();
+            Collections.sort(liste_med_personer, sammenligner);
         }
-
-        // Fetch og navnelist er usorteret
-
-        fetch = prefs.getStringSet("navne", null);
-        List<String> navnelist = new ArrayList<String>(fetch);
-
-
-        //Debug: Sæt navne ind i listen
-        /*
-        for(int i = 0;i <33; i++) {
-            navnelist.add("Christian 100");
-            navnelist.add("ChristianM 1000");
-            navnelist.add("Troels 20");
-            navnelist.add("John 5");
-            navnelist.add("Pia 1");
-            navnelist.add("Petra 123");
-            navnelist.add("Sudo 420");
-            navnelist.add("Huawei 93");
-            navnelist.add("Hvad sa? 39");
-        }
-        */
-
-        for (int i = 0; i < navnelist.size(); i++) {
-            Log.d("Debug:::", "navn = " + navnelist.get(i));
-        }
-
-
-        System.out.println("Printer navne + nummer");
-        for (int i = 0; i < navnelist.size(); i++) {
-            int point = prefs.getInt(navnelist.get(i), -1);
-            String navn = navnelist.get(i);
-            String dato =prefs.getString("date_"+navn,"Fejl!");
-            Highscore person = new Highscore(navn, point, dato);
-            System.out.println(person.toString());
-            liste_med_personer.add(person);
-        }
-
-        //Sortere navnene udfra scoren
-        Highscore_comparator sammenligner = new Highscore_comparator();
-        Collections.sort(liste_med_personer, sammenligner);
 
 
         ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.highscore_liste_design, R.id.navn_Highscorelisten, liste_med_personer) {

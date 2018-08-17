@@ -14,10 +14,11 @@
             android:title="Spillernavn" />
         <CheckBoxPreference
             android:id="@+id/checkbox_globalScore"
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:key="checkbox_globalScore"
             android:text="test"
             android:title="Global highscore" />
+        <!-- //TODO Slå DefualtValue for checkboxen til false efter testning -->
 
         <Preference
             android:key="reset_highscore"
