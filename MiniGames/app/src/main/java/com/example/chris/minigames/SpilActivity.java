@@ -48,7 +48,7 @@ public class SpilActivity extends AppCompatActivity implements Runnable {
 
         if(savedInstanceState == null){
 
-        Singleton.point = 1; // Reset score
+        Singleton.point = 0; // TODO: Reset score til 0
         text_ur = findViewById(R.id.text_ur);
         progressBar = findViewById(R.id.progressBar);
         text_score = findViewById(R.id.text_score);
@@ -84,7 +84,7 @@ public class SpilActivity extends AppCompatActivity implements Runnable {
     private void startSpil() {
 
         int spil_length = 30000;
-        spil_length = 5000;
+        spil_length = 500;
 
         if(spilListe.size() == 0){
             System.out.println(spilnr+" spil blev spillet og highscore siden vises nu.");
