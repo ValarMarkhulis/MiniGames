@@ -13,4 +13,6 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="spillernavn_res">Navn</string>
+    <string name="text_btn_highscore">Vis highscore listen</string>
+    <string name="test">dialog</string>
 </resources>

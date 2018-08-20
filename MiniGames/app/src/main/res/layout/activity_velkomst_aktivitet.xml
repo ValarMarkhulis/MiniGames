@@ -34,6 +34,19 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_play" />
 
     <Button
+        android:id="@+id/btn_highscore"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/text_btn_highscore"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_settings" />
+
+    <Button
         android:id="@+id/btn_play"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

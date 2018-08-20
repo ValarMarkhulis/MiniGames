@@ -84,7 +84,7 @@ public class SpilActivity extends AppCompatActivity implements Runnable {
     private void startSpil() {
 
         int spil_length = 30000;
-        spil_length = 500;
+        //spil_length = 500;
 
         if(spilListe.size() == 0){
             System.out.println(spilnr+" spil blev spillet og highscore siden vises nu.");

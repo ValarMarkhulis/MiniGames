@@ -1,11 +1,9 @@
 package com.example.chris.minigames;
 
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.preference.PreferenceManager;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -15,19 +13,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
 
 public class velkomstAktivitet extends AppCompatActivity implements View.OnClickListener {
 
 
     Button btn_spil;
     Button btn_indstillinger;
+    Button btn_highscore;
     public static final String checkbox_key = "checkbox_globalScore";
     static boolean vendt_rigtigt = true;
     Toast t;
+    private static final String test = "test";
+    FragmentManager fm = getSupportFragmentManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +48,9 @@ public class velkomstAktivitet extends AppCompatActivity implements View.OnClick
         btn_spil.setOnClickListener(this);
         btn_indstillinger = findViewById(R.id.btn_settings);
         btn_indstillinger.setOnClickListener(this);
+        btn_highscore = findViewById(R.id.btn_highscore);
+        btn_highscore.setOnClickListener(this);
+
         DisplayMetrics displaymetrics = new DisplayMetrics();
         this.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         Singleton.win_bredde = displaymetrics.widthPixels;
@@ -86,6 +86,10 @@ public class velkomstAktivitet extends AppCompatActivity implements View.OnClick
             Intent Act_indstillinger = new Intent(getApplicationContext(), Indstillinger_akt.class);
             startActivity(Act_indstillinger);
 
+        }else if (v.getId() == R.id.btn_highscore) {
+
+            MyDialogFragment dialogFragment = new MyDialogFragment();
+            dialogFragment.show(fm, "Sample Fragment");
         }
 
     }
