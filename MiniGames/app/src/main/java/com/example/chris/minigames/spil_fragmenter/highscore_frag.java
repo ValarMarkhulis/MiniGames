@@ -78,10 +78,6 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
     }
 
     private void lav_Highscore(final ProgressBar pbar) {
-        //Todo: Check om "Global Highscore" er slået til i indstillinger.
-        // Hvis den er, så upload den lokales højeste score til db
-        // og hent Highscore listen fra nettet af i sorteret rækkefølge
-
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         ListView highScoreListen = tl.findViewById(R.id.highscore_list);
@@ -97,19 +93,19 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
             myFireBaseref = new Firebase("https://minigames-719df.firebaseio.com/");
 
             // Hent Firebase data som
-            personer = myFireBaseref.child("v1").child("personer");
+            personer = myFireBaseref.child("v2").child("personer");
 
-         /*
+/*
         //V1 testpersoner
-        Highscore test = new Highscore("Christian", 10, "13:33:37 04-20-0420");
+        Highscore test = new Highscore("Christian", 10, "13:33:37 04-20-18");
         test.setGlobal_score(true);
         personer.child("1").setValue(test);
 
-        test = new Highscore("John", 8, "13:33:36 04-20-0420");
+        test = new Highscore("John", 8, "13:33:36 04-20-18");
         test.setGlobal_score(true);
         personer.child("2").setValue(test);
 
-        test = new Highscore("Lasse", 6, "13:33:35 04-20-0420");
+        test = new Highscore("Lasse", 6, "13:33:35 04-20-18");
         test.setGlobal_score(true);
         personer.child("3").setValue(test);
 
@@ -182,7 +178,8 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
         }
 
         //Henter værdierne der skal bruges og inputvalider brugerens navn
-        String date = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy").format(new Date());
+        String date = new SimpleDateFormat("HH:mm:ss dd-MM-yy").format(new Date());
+        System.out.println(date);
         String nyt_navn = prefs.getString("spillernavn_key", "Standard Navn");
         nyt_navn = nyt_navn.replaceAll("[^\\x20-\\x7E]", ""); // Frasorterer alle karaktere udover dem der er fra 20 til 126
 
@@ -255,8 +252,8 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
             List<String> navnelist = new ArrayList<String>(fetch);
 
 
-            //Debug: Sæt navne ind i listen
             /*
+            //Debug: Sæt navne ind i listen
             for(int i = 0;i <33; i++) {
                 navnelist.add("Christian 100");
                 navnelist.add("ChristianM 1000");
@@ -269,6 +266,7 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
                 navnelist.add("Hvad sa? 39");
             }
             */
+
 
 
         if(debug){

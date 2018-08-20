@@ -90,6 +90,7 @@ public class velkomstAktivitet extends AppCompatActivity implements View.OnClick
 
             MyDialogFragment dialogFragment = new MyDialogFragment();
             dialogFragment.show(fm, "Sample Fragment");
+
         }
 
     }

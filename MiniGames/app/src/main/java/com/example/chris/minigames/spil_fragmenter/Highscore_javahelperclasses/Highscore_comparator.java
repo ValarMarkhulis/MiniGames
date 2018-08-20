@@ -12,7 +12,7 @@ public class Highscore_comparator implements Comparator<Highscore> {
         if(h1.getScore() < h2.getScore()){
             return 1;
         }else if(h1.getScore() == h2.getScore()){
-            SimpleDateFormat defaultDateFormat = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy", Locale.getDefault());
+            SimpleDateFormat defaultDateFormat = new SimpleDateFormat("HH:mm:ss dd-MM-yy", Locale.getDefault());
             Date dato1;
             Date dato2;
             try {
