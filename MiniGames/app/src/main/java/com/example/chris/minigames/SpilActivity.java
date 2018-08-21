@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.chris.minigames.spil_fragmenter.game_color_combi_frag;
 import com.example.chris.minigames.spil_fragmenter.game_green_btn_frag;
 import com.example.chris.minigames.spil_fragmenter.game_ligning_frag;
 import com.example.chris.minigames.spil_fragmenter.highscore_frag;
@@ -58,8 +59,9 @@ public class SpilActivity extends AppCompatActivity implements Runnable {
 
 
         spilListe= new ArrayList<Fragment>();
-        spilListe.add(new game_ligning_frag());
-        spilListe.add(new game_green_btn_frag());
+        //spilListe.add(new game_ligning_frag());
+        //spilListe.add(new game_green_btn_frag());
+        spilListe.add(new game_color_combi_frag());
         //Todo: Tilføj flere spil til spillisten!
         spilListe.add(new highscore_frag());
         spilnr = 0;
@@ -84,7 +86,7 @@ public class SpilActivity extends AppCompatActivity implements Runnable {
     private void startSpil() {
 
         int spil_length = 30000;
-        spil_length = 500;
+        //spil_length = 500;
 
         if(spilListe.size() == 0){
             System.out.println(spilnr+" spil blev spillet og highscore siden vises nu.");

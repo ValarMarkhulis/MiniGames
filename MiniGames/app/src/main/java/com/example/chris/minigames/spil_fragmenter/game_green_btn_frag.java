@@ -45,7 +45,7 @@ public class game_green_btn_frag extends Fragment implements View.OnClickListene
         Random r = new Random();
 
         knap.setX(r.nextInt(Singleton.win_bredde)/2);
-        knap.setY((r.nextInt(Singleton.win_hoejde))/2);
+        knap.setY((r.nextInt(Singleton.win_hoejde))/2+100);
 
     }
 
