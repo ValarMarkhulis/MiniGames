@@ -1,6 +1,8 @@
 package com.example.chris.minigames;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
@@ -15,10 +17,13 @@ import java.util.Set;
 public class Indstillinger_akt extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     public static final String navne_key = "spillernavn_key";
     private Context context;
+    private boolean debug = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
          super.onCreate(savedInstanceState);
+
+         // Sæt indstillingerne til at opdatere værdier gemt i PreferenceManageren
          addPreferencesFromResource(R.xml.indstillinger);
 
          final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -68,7 +73,7 @@ public class Indstillinger_akt extends PreferenceActivity implements SharedPrefe
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if(key.equals(navne_key)){
-            System.out.println("Navnet blev ændret");
+            if(debug) System.out.println("Navnet blev ændret");
             Preference connectionPref = findPreference(key);
             // Set summary to be the user-description for the selected value
             connectionPref.setSummary(sharedPreferences.getString(key, ""));

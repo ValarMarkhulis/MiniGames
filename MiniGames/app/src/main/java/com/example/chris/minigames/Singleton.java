@@ -11,13 +11,14 @@ public class Singleton extends Application {
     public static int point = 0;
     public static int win_bredde = 0;
     public static int win_hoejde = 0;
+    private Boolean debug = false;
 
     public static List<Runnable> liste_run = new ArrayList<Runnable>();
 
     @Override
     public void onCreate() {
         super.onCreate();
-        System.out.println("Singletonklass's onCreate() blev kaldt!");
+        if(debug) System.out.println("Singletonklass's onCreate() blev kaldt!");
 
     }
 

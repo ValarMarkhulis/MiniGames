@@ -52,12 +52,12 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
     List<Highscore> liste_med_personer;
     Firebase myFireBaseref;
     Firebase personer;
-    boolean debug = true;
+    private boolean debug = false;
     ArrayList<Integer> top3 = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d("highscore_frag", "fragmentet blev vist!");
+        if (debug) Log.d("highscore_frag", "fragmentet blev vist!");
 
         // Programmatisk layout
 
@@ -73,71 +73,34 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
 
         lav_Highscore(pbar);
 
-
         return tl;
     }
 
     private void lav_Highscore(final ProgressBar pbar) {
-
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        ListView highScoreListen = tl.findViewById(R.id.highscore_list);
 
         //Holder listen der vises med Adapteren i listviewet
-        liste_med_personer = new ArrayList<Highscore>();
+        liste_med_personer = new ArrayList<>();
         Set<String> fetch;
 
-        if(prefs.getBoolean("checkbox_globalScore",false) && haveNetworkConnection()) { // Hvis der er globalScore og internet
+        if (prefs.getBoolean("checkbox_globalScore", false) && haveNetworkConnection()) { // Hvis der er globalScore og internet
 
             pbar.setVisibility(View.VISIBLE);
-            //Opret Highscore objekter, hvis det er slået til i indstillinger
+            //Opretter en Firebasereference
             myFireBaseref = new Firebase("https://minigames-719df.firebaseio.com/");
 
-            // Hent Firebase data som
+            // Laver en reference til en bestemt version "gren" i mit firebase træ
             personer = myFireBaseref.child("v2").child("personer");
 
-/*
-        //V1 testpersoner
-        Highscore test = new Highscore("Christian", 10, "13:33:37 04-20-18");
-        test.setGlobal_score(true);
-        personer.child("1").setValue(test);
-
-        test = new Highscore("John", 8, "13:33:36 04-20-18");
-        test.setGlobal_score(true);
-        personer.child("2").setValue(test);
-
-        test = new Highscore("Lasse", 6, "13:33:35 04-20-18");
-        test.setGlobal_score(true);
-        personer.child("3").setValue(test);
-
-
-        //V0 testpersoner
-        test = new Highscore("John", 950, "13:33:37 04-20-1420");
-        personer.child("2").setValue(test);
-
-        test = new Highscore("Lasse", 900, "13:33:37 04-20-1420");
-        personer.child("3").setValue(test);
-*/
-
-
-                    //Firebase personer = myFireBaseref.child("v0").child("personer");
-                    //personer.child("1Christian").child("score").setValue("1050 & 13:33:37 04-20-0420");
-                    //personer.child("2John").child("score").setValue("1000 & 13:33:37 04-20-0420");
-                    //personer.child("3Lasse").child("score").setValue("900 & 13:33:37 04-20-0420");
-                    //personer.child("4Valdemar").setValue("900 & 13:33:37 04-20-0420");
-                    //personer.child("5Tristan").setValue("800 & 13:33:37 04-20-0420");
-
-
-
-           personer.addListenerForSingleValueEvent(new ValueEventListener() {
+            //Opretter en lytter der kun henter data en gang
+            personer.addListenerForSingleValueEvent(new ValueEventListener() {
 
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     try {
-                    ArrayList<Highscore> personer_firebase = new ArrayList<Highscore>();
 
-
-                    //Gennemløb de 3 højeste score og lav dem til Highscore objekter
-                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        //Gennemløb de 3 højeste score og lav dem til Highscore objekter
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
                             Highscore p = new Highscore();
                             p.setNavn(ds.getValue(Highscore.class).getNavn());
@@ -151,12 +114,12 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
                             //Læg objekterne i listen der sorteres og vises i Adapteren
                             liste_med_personer.add(p);
 
-                    }
+                        }
 
-                    setHighscoreOgAdapter(true);
-                    //Fjern progressbaren
-                    pbar.setVisibility(View.INVISIBLE);
-                    if(debug) System.out.println("Færdig med at hente firebase data");
+                        setHighscoreOgAdapter(true);
+                        //Fjern progressbaren
+                        pbar.setVisibility(View.INVISIBLE);
+                        if (debug) System.out.println("Færdig med at hente firebase data");
 
                     } catch (Exception ex) {
                         //Bliver kaldt, hvis brugeren gå til menuen eller trykker spil igen
@@ -172,7 +135,7 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
             });
 
 
-        }else if(prefs.getBoolean("checkbox_globalScore",false) && !haveNetworkConnection()){
+        } else if (prefs.getBoolean("checkbox_globalScore", false) && !haveNetworkConnection()) {
             //Hvis brugeren ønskede globalscore, men ikke havde internet
             Toast.makeText(getActivity(), "Du har ingen internet forbindelse!", Toast.LENGTH_SHORT).show();
         }
@@ -190,7 +153,7 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
         }
 
         int ny_score = Singleton.point;
-        if(debug) System.out.println(nyt_navn + " fik " + ny_score + " point");
+        if (debug) System.out.println(nyt_navn + " fik " + ny_score + " point");
 
         fetch = prefs.getStringSet("navne", null);
         //Hvis det er første spil er der intet gemt i Preferencemangeren
@@ -199,7 +162,7 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
 
             navne.add(nyt_navn);
 
-            if(debug) Log.d("Navnet ", nyt_navn + " er blevet tilføjet til navnelisten");
+            if (debug) Log.d("Navnet ", nyt_navn + " er blevet tilføjet til navnelisten");
             prefs.edit().
                     putStringSet("navne", navne).
                     putInt(nyt_navn, ny_score).
@@ -207,12 +170,13 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
                     apply();
 
 
-        }else {
-            Set<String> navne = new HashSet<String>();
-            List<String> list_usorteret = new ArrayList<String>(fetch);
+        } else {
+            Set<String> navne = new HashSet<>();
+            List<String> list_usorteret = new ArrayList<>(fetch);
 
             boolean flag = false;
 
+            //Lægger navnene fra listen over i et Set
             for (int i = 0; i < list_usorteret.size(); i++) {
                 navne.add(list_usorteret.get(i));
                 if (list_usorteret.get(i).matches(nyt_navn)) {
@@ -222,7 +186,7 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
 
             if (flag) { //Hvis navn allerede findes på listen
                 if (prefs.getInt(nyt_navn, -1) < ny_score) {
-                    if(debug) Log.d("Debug:", nyt_navn + "'s score blev overskrevet med " + ny_score);
+                    if (debug) Log.d("Debug:", nyt_navn + "'s score blev overskrevet med " + ny_score);
                     //Overskriv gammel score
                     prefs.edit().
                             putInt(nyt_navn, ny_score).
@@ -230,7 +194,7 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
                             apply();
                 }
             } else {
-                if(debug) Log.d("Debug:", nyt_navn + " blev tilføjet til navnelisten");
+                if (debug) Log.d("Debug:", nyt_navn + " blev tilføjet til navnelisten");
                 navne.add(nyt_navn);
                 prefs.edit().
                         putInt(nyt_navn, ny_score).
@@ -247,9 +211,9 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
                     apply();
         }
 
-            // Fetch og navnelist er usorteret
-            fetch = prefs.getStringSet("navne", null);
-            List<String> navnelist = new ArrayList<String>(fetch);
+        // Fetch og navnelist er usorteret
+        fetch = prefs.getStringSet("navne", null);
+        List<String> navnelist = new ArrayList<String>(fetch);
 
 
             /*
@@ -268,20 +232,19 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
             */
 
 
-
-        if(debug){
+        if (debug) {
             for (int i = 0; i < navnelist.size(); i++) {
                 Log.d("Debug:::", "navn = " + navnelist.get(i));
             }
         }
 
-
+        // Opsætter Highscore objekter og putter dem i en liste
         for (int i = 0; i < navnelist.size(); i++) {
             int point = prefs.getInt(navnelist.get(i), -1);
             String navn = navnelist.get(i);
-            String dato =prefs.getString("date_"+navn,"Fejl!");
+            String dato = prefs.getString("date_" + navn, "Fejl!");
             Highscore person = new Highscore(navn, point, dato);
-            if(debug)System.out.println(person.toString());
+            if (debug) System.out.println(person.toString());
             liste_med_personer.add(person);
         }
 
@@ -291,10 +254,10 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
 
     private void setHighscoreOgAdapter(boolean Firebase_data) {
         ListView highScoreListen = tl.findViewById(R.id.highscore_list);
-        //Sortere navnene udfra scoren
+
+        //Sortere navnene udfra scoren med en comparator
         Highscore_comparator sammenligner = new Highscore_comparator();
         Collections.sort(liste_med_personer, sammenligner);
-
 
 
         ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.highscore_liste_design, R.id.navn_Highscorelisten, liste_med_personer) {
@@ -302,12 +265,14 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
             @Override
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
                 View v = super.getView(position, convertView, parent);
+
+                //Opsætter de 3 forskellige koloner med data
                 TextView score = v.findViewById(R.id.score_Highscorelisten);
                 score.setText("" + liste_med_personer.get(position).getScore());
-                TextView dato  = v.findViewById(R.id.dato_Highscorelisten);
+                TextView dato = v.findViewById(R.id.dato_Highscorelisten);
                 dato.setText(liste_med_personer.get(position).getDato());
 
-                if(liste_med_personer.get(position).isGlobal_score()){
+                if (liste_med_personer.get(position).isGlobal_score()) {
                     TextView navn = v.findViewById(R.id.navn_Highscorelisten);
                     navn.setTextColor(getResources().getColor(black));
                     score.setTextColor(getResources().getColor(black));
@@ -317,36 +282,36 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
             }
         };
 
+        //Giver listviewet adapteren
         highScoreListen.setAdapter(adapter);
 
-        if(Firebase_data){
+        if (Firebase_data) {
             //Gennemgå top 3 på listen og upload dem til Global Highscorelisten
-            try{
-                for (int i = 0; i<3;i++){
+            try {
+                for (int i = 0; i < 3; i++) {
                     Highscore p = liste_med_personer.get(i);
-                    System.out.println(p.getScore()+" nr."+i);
-                    System.out.println(top3.get(i)+"");
-                    if(p.getScore() != top3.get(i)){
+                    System.out.println(p.getScore() + " nr." + i);
+                    System.out.println(top3.get(i) + "");
+                    if (p.getScore() != top3.get(i)) {
 
-                        switch (i){
+                        switch (i) {
                             case 0:
-                                if(!liste_med_personer.get(0).isGlobal_score()){
-                                    liste_med_personer.get(0).setNavn(liste_med_personer.get(0).getNavn()+" [Global]");
+                                if (!liste_med_personer.get(0).isGlobal_score()) {
+                                    liste_med_personer.get(0).setNavn(liste_med_personer.get(0).getNavn() + " [Global]");
                                     liste_med_personer.get(0).setGlobal_score(true);
                                 }
 
                                 personer.child("1").setValue(liste_med_personer.get(0));
                             case 1:
-                                if(!liste_med_personer.get(1).isGlobal_score()){
-                                    liste_med_personer.get(1).setNavn(liste_med_personer.get(1).getNavn()+" [Global]");
+                                if (!liste_med_personer.get(1).isGlobal_score()) {
+                                    liste_med_personer.get(1).setNavn(liste_med_personer.get(1).getNavn() + " [Global]");
                                     liste_med_personer.get(1).setGlobal_score(true);
                                 }
 
                                 personer.child("2").setValue(liste_med_personer.get(1));
                             case 2:
-                                if(!liste_med_personer.get(2).isGlobal_score())
-                                {
-                                    liste_med_personer.get(2).setNavn(liste_med_personer.get(2).getNavn()+" [Global]");
+                                if (!liste_med_personer.get(2).isGlobal_score()) {
+                                    liste_med_personer.get(2).setNavn(liste_med_personer.get(2).getNavn() + " [Global]");
                                     liste_med_personer.get(2).setGlobal_score(true);
                                 }
 
@@ -359,7 +324,7 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
                     }
                 }
 
-            }catch (Exception ex){
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
 
@@ -382,7 +347,6 @@ public class highscore_frag extends Fragment implements View.OnClickListener {
         }
 
     }
-
 
 
     /* Fra https://stackoverflow.com/questions/4238921/detect-whether-there-is-an-internet-connection-available-on-android */

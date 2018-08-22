@@ -34,6 +34,7 @@ public class game_color_combi_frag extends Fragment implements SeekBar.OnSeekBar
     SeekBar seekBar_red;
     SeekBar seekBar_green;
     SeekBar seekBar_blue;
+    private boolean debug = false;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,11 +43,9 @@ public class game_color_combi_frag extends Fragment implements SeekBar.OnSeekBar
         // Programmatisk layout
         View tl = inflater.inflate(R.layout.game_color_combi_frag, container, false);
 
-
         red_helper_text = tl.findViewById(R.id.text_red_help);
         green_helper_text = tl.findViewById(R.id.text_green_help);
         blue_helper_text = tl.findViewById(R.id.text_blue_help);
-
 
         farve_change = tl.findViewById(R.id.farve_change);
         farve_guess = tl.findViewById(R.id.farve_guess);
@@ -56,7 +55,6 @@ public class game_color_combi_frag extends Fragment implements SeekBar.OnSeekBar
         seekBar_red.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
         seekBar_red.getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
         seekBar_red.setOnSeekBarChangeListener(this);
-
 
         seekBar_green = tl.findViewById(R.id.seekBar_green);
         seekBar_green.getProgressDrawable().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_IN);
@@ -79,37 +77,42 @@ public class game_color_combi_frag extends Fragment implements SeekBar.OnSeekBar
     private void findRandomColor() {
 
         Random r = new Random();
+        // Find 3 tilfældige værdier mellem 10 og 255 som bruges som en RGB farve
         red_guess = r.nextInt(245)+10;
         green_guess = r.nextInt(245)+10;
         blue_guess = r.nextInt(245)+10;
 
+        //farve_change er den spilleren kan manipulere
         farve_change.setBackgroundColor(Color.rgb(0,0,0));
+        //farve_guess er den spilleren skal gætte sig frem til, hvordan er lavet
         farve_guess.setBackgroundColor(Color.rgb(red_guess,green_guess, blue_guess));
 
         seekBar_red.setProgress(0);
         seekBar_green.setProgress(0);
         seekBar_blue.setProgress(0);
 
-
     }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        //Hver gang at spilleren ændrer på nogle af "sliderne"
         if(seekBar.getId() == R.id.seekBar_red){
-            //System.out.println("værdien for rød er: "+progress);
+            if(debug) System.out.println("værdien for rød er: "+progress);
             red = progress;
         } else if(seekBar.getId() == R.id.seekBar_green){
-            //System.out.println("værdien for grøn er: "+progress);
+            if(debug) System.out.println("værdien for grøn er: "+progress);
             green = progress;
         } else if(seekBar.getId() == R.id.seekBar_blue){
-            //System.out.println("værdien for blå er: "+progress);
+            if(debug) System.out.println("værdien for blå er: "+progress);
             blue = progress;
         }
+
         farve_change.setBackgroundColor(Color.rgb(red, green, blue));
     }
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
+        //Når brugeren tager fat i en af sliderne
         red_helper_text.setVisibility(View.INVISIBLE);
         green_helper_text.setVisibility(View.INVISIBLE);
         blue_helper_text.setVisibility(View.INVISIBLE);
@@ -117,10 +120,13 @@ public class game_color_combi_frag extends Fragment implements SeekBar.OnSeekBar
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        System.out.println(ColourDistance()+" distancen");
+        //Når brugeren slipper en af sliderne
+
+        if(debug) System.out.println(ColourDistance()+" distancen");
         red_helper_text.setVisibility(View.INVISIBLE);
         green_helper_text.setVisibility(View.INVISIBLE);
         blue_helper_text.setVisibility(View.INVISIBLE);
+
         if(ColourDistance() < 100){
             Singleton.point += 5;
             Singleton.opdater();
@@ -151,7 +157,7 @@ public class game_color_combi_frag extends Fragment implements SeekBar.OnSeekBar
                 blue_dif_negativ = true;
             }
 
-
+            //Find den farve, som kræver størst ændring
             if(red_dif > green_dif && red_dif > blue_dif){
                 red_helper_text.setVisibility(View.VISIBLE);
                 if(red_dif_negativ){
@@ -180,7 +186,8 @@ public class game_color_combi_frag extends Fragment implements SeekBar.OnSeekBar
     /*Fundet via https://stackoverflow.com/questions/2103368/color-logic-algorithm */
     public double ColourDistance()
     {
-        //Måler distancen/forskellen mellem rød, grøn og blå kannalen.
+        //Måler distancen/forskellen mellem rød, grøn og blå kannalen i forhold til
+        // den ønskede farve
         double rmean = ( red_guess + red )/2;
         int r = red_guess - red;
         int g = green_guess - green;

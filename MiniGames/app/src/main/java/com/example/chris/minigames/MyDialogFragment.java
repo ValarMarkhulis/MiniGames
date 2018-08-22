@@ -31,13 +31,16 @@ import java.util.Set;
 
 import static com.example.chris.minigames.R.color.black;
 
+/* Denne fil indeholder en modificeret version af lav_Higscore() fra highscore_frag, da de skal vise og gøre
+ nogenlunde det samme. Dog skal dataen i denne klasse vises i et DialogFragment */
+
 public class MyDialogFragment extends DialogFragment{
     private static final int MAX_NAME_LENGTH = 15;
     List<Highscore> liste_med_personer;
     Firebase myFireBaseref;
     Firebase personer;
     View rootView;
-    boolean debug = true;
+    private boolean debug = true;
     ArrayList<Integer> top3 = new ArrayList<>();
 
     @Override
@@ -53,22 +56,20 @@ public class MyDialogFragment extends DialogFragment{
 
     private void lav_Highscore(final ProgressBar pbar) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        ListView highScoreListen = rootView.findViewById(R.id.highscore_list);
 
         //Holder listen der vises med Adapteren i listviewet
-        liste_med_personer = new ArrayList<Highscore>();
+        liste_med_personer = new ArrayList<>();
         Set<String> fetch;
 
         if(prefs.getBoolean("checkbox_globalScore",false) && haveNetworkConnection()) { // Hvis der er globalScore og internet
 
-            pbar.setVisibility(View.VISIBLE);
-            //Opret Highscore objekter, hvis det er slået til i indstillinger
+            //Opretter en Firebasereference
             myFireBaseref = new Firebase("https://minigames-719df.firebaseio.com/");
 
-            // Hent Firebase data som
+            // Laver en reference til en bestemt version "gren" i mit firebase træ
             personer = myFireBaseref.child("v2").child("personer");
 
-
+            //Opretter en lytter der kun henter data en gang
             personer.addListenerForSingleValueEvent(new ValueEventListener() {
 
                 @Override
@@ -128,23 +129,6 @@ public class MyDialogFragment extends DialogFragment{
             return;
         }
         List<String> navnelist = new ArrayList<String>(fetch);
-
-
-        /*
-        //Debug: Sæt navne ind i listen
-        for(int i = 0;i <33; i++) {
-            navnelist.add("Christian 100");
-            navnelist.add("ChristianM 1000");
-            navnelist.add("Troels 20");
-            navnelist.add("John 5");
-            navnelist.add("Pia 1");
-            navnelist.add("Petra 123");
-            navnelist.add("Sudo 420");
-            navnelist.add("Huawei 93");
-            navnelist.add("Hvad sa? 39");
-        }
-        */
-
 
         for (int i = 0; i < navnelist.size(); i++) {
             int point = prefs.getInt(navnelist.get(i), -1);

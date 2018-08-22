@@ -28,6 +28,7 @@ public class SpilActivity extends AppCompatActivity implements Runnable {
     ProgressBar progressBar;
     TextView text_score;
     TextView text_HighscoreListTitle;
+    private boolean debug = false;
 
     int spilnr;
     ArrayList<Fragment> spilListe;
@@ -40,6 +41,7 @@ public class SpilActivity extends AppCompatActivity implements Runnable {
 
         Singleton.abboner(this);
 
+        //Opsætter fullscreen
         this.getWindow().getDecorView();
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN |
                 View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
@@ -48,74 +50,23 @@ public class SpilActivity extends AppCompatActivity implements Runnable {
                 View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
         if(savedInstanceState == null){
+            Singleton.point = 0;
+            text_ur = findViewById(R.id.text_ur);
+            progressBar = findViewById(R.id.progressBar);
+            text_score = findViewById(R.id.text_score);
+            text_HighscoreListTitle = findViewById(R.id.text_HighscoreListTitle);
+            text_HighscoreListTitle.setVisibility(View.INVISIBLE);
+            progressBar.setMax(30);
 
-        Singleton.point = 0; // TODO: Reset score til 0
-        text_ur = findViewById(R.id.text_ur);
-        progressBar = findViewById(R.id.progressBar);
-        text_score = findViewById(R.id.text_score);
-        text_HighscoreListTitle = findViewById(R.id.text_HighscoreListTitle);
-        text_HighscoreListTitle.setVisibility(View.INVISIBLE);
-        progressBar.setMax(30);
+            spilListe= new ArrayList<Fragment>();
+            spilListe.add(new game_ligning_frag());
+            spilListe.add(new game_green_btn_frag());
+            spilListe.add(new game_color_combi_frag());
+            spilListe.add(new highscore_frag());
+            spilnr = 0;
 
-
-        spilListe= new ArrayList<Fragment>();
-        spilListe.add(new game_ligning_frag());
-        spilListe.add(new game_green_btn_frag());
-        spilListe.add(new game_color_combi_frag());
-        //Todo: Tilføj flere spil til spillisten!
-        spilListe.add(new highscore_frag());
-        spilnr = 0;
-
-        skiftspil();
+            skiftspil();
         }
-
-
-        /*
-        getFragmentManager().beginTransaction()
-                .replace(R.id.framelayout, new game_ligning_frag())
-                //.addToBackStack(null)
-                .commit();
-
-        getFragmentManager().beginTransaction()
-                .replace(R.id.framelayout, new game_green_btn_frag())
-                //.addToBackStack(null)
-                .commit();
-                */
-    }
-
-    private void startSpil() {
-
-        int spil_length = 30000;
-        //spil_length = 10000;
-
-        if(spilListe.size() == 0){
-            System.out.println(spilnr+" spil blev spillet og highscore siden vises nu.");
-            text_score.setVisibility(View.INVISIBLE);
-            progressBar.setVisibility(View.INVISIBLE);
-            text_ur.setVisibility(View.INVISIBLE);
-            text_HighscoreListTitle.setVisibility(View.VISIBLE);
-
-        }else {
-            spilnr++;
-            System.out.println("Spil nr. "+spilnr+" er startet!");
-            cdt = new CountDownTimer(spil_length, 1000) {
-
-                public void onTick(long millisUntilFinished) {
-                    text_ur.setText("" + millisUntilFinished / 1000);
-                    progressBar.setProgress((int) millisUntilFinished / 1000);
-                    text_score.setText("" + Singleton.point);
-                }
-
-                public void onFinish() {
-                    text_ur.setText("0");
-                    progressBar.setProgress(0);
-                    text_score.setText("" + Singleton.point);
-                    skiftspil();
-                }
-            }.start();
-        }
-
-
 
     }
 
@@ -130,16 +81,55 @@ public class SpilActivity extends AppCompatActivity implements Runnable {
             spilListe.remove(0);
             startSpil();
         }else{
-            System.out.println("Der er ikke flere spil tilbage!");
-
+            if (debug) System.out.println("Der er ikke flere spil tilbage!");
         }
-
-
     }
+
+    private void startSpil() {
+
+        int spil_length = 30000;
+        //spil_length = 5000;
+
+        if(spilListe.size() == 0){
+            if (debug) System.out.println(spilnr+" spil blev spillet og highscore siden vises nu.");
+            text_score.setVisibility(View.INVISIBLE);
+            progressBar.setVisibility(View.INVISIBLE);
+            text_ur.setVisibility(View.INVISIBLE);
+            text_HighscoreListTitle.setVisibility(View.VISIBLE);
+
+        }else {
+            spilnr++;
+            if (debug) System.out.println("Spil nr. "+spilnr+" er startet!");
+
+            //Start en CountDownTimer som bruges til tidsstyring og vises visuelt til brugeren
+            // med en progressBar
+            cdt = new CountDownTimer(spil_length, 1000) {
+
+                //Hvert sekund
+                public void onTick(long millisUntilFinished) {
+                    //Opdater uret
+                    text_ur.setText("" + millisUntilFinished / 1000);
+                    progressBar.setProgress((int) millisUntilFinished / 1000);
+                    text_score.setText("" + Singleton.point);
+                }
+
+                public void onFinish() {
+                    text_ur.setText("0");
+                    progressBar.setProgress(0);
+                    text_score.setText("" + Singleton.point);
+                    skiftspil();
+                }
+            }.start();
+        }
+    }
+
+
 
 
     @Override
     public void run() {
+        // Metode til at opdatere scoren når spilleren får eller mister point
+        // realtime
         if (Integer.parseInt(text_score.getText().toString()) < Singleton.point){
             text_score.setTextColor(getResources().getColor(R.color.green));
         }else{

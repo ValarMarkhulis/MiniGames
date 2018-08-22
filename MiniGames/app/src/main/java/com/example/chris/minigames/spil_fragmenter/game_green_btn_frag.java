@@ -16,6 +16,7 @@ import java.util.Random;
 
 public class game_green_btn_frag extends Fragment implements View.OnClickListener {
     ImageView knap;
+    private boolean debug = false;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class game_green_btn_frag extends Fragment implements View.OnClickListene
         Singleton.opdater();
         Random r = new Random();
 
+        //Sæt ny position af knap
         knap.setX(r.nextInt(Singleton.win_bredde)/2);
         knap.setY((r.nextInt(Singleton.win_hoejde))/2+100);
 

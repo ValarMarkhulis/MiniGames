@@ -31,10 +31,11 @@ public class game_ligning_frag extends Fragment  implements View.OnClickListener
     TextView antalRigtigeText;
     TextView antalForkerteText;
     private Toast mToast;
+    private boolean debug = false;
 
     @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            Log.d("game_ligning_frag", "fragmentet blev vist!");
+            if (debug) Log.d("game_ligning_frag", "fragmentet blev vist!");
 
             // Programmatisk layout
             View tl = inflater.inflate(R.layout.game_ligning_frag, container, false);
@@ -57,7 +58,6 @@ public class game_ligning_frag extends Fragment  implements View.OnClickListener
                 antalForkerteText.setText("0");
                 antalRigtigeText.setText("0");
             }
-
 
 
             svar1.setOnClickListener(this);
@@ -84,6 +84,7 @@ public class game_ligning_frag extends Fragment  implements View.OnClickListener
             flueben.setVisibility(View.VISIBLE);
             lavligning();
 
+            //Opret en AsyncTask som fjerner Imageviewet efter 2 sekunder
             new AsyncTask(){
 
                 @Override
@@ -119,7 +120,7 @@ public class game_ligning_frag extends Fragment  implements View.OnClickListener
 
 
     public void lavligning(){
-        //Lav ligning:
+        //Lav ligning med tilfældige tal
         Random r = new Random();
         int tal1 = r.nextInt(10)+1;
         int tal2 = r.nextInt(10)+1;
