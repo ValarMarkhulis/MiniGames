@@ -122,7 +122,8 @@ public class game_color_combi_frag extends Fragment implements SeekBar.OnSeekBar
         green_helper_text.setVisibility(View.INVISIBLE);
         blue_helper_text.setVisibility(View.INVISIBLE);
         if(ColourDistance() < 100){
-            Singleton.point += 3;
+            Singleton.point += 5;
+            Singleton.opdater();
             findRandomColor();
         }else if (ColourDistance() > 100 && ColourDistance() < 400){
             //Forsøg på at hjælpe brugeren med hvilken farve og om den
