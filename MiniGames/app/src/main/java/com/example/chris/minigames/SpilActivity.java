@@ -18,7 +18,6 @@ import com.example.chris.minigames.spil_fragmenter.game_green_btn_frag;
 import com.example.chris.minigames.spil_fragmenter.game_ligning_frag;
 import com.example.chris.minigames.spil_fragmenter.highscore_frag;
 
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -101,25 +100,26 @@ public class SpilActivity extends AppCompatActivity implements Runnable {
             spilnr++;
             if (debug) System.out.println("Spil nr. "+spilnr+" er startet!");
 
-            //Start en CountDownTimer som bruges til tidsstyring og vises visuelt til brugeren
-            // med en progressBar
-            cdt = new CountDownTimer(spil_length, 1000) {
+                //Start en CountDownTimer som bruges til tidsstyring og vises visuelt til brugeren
+                // med en progressBar
+                cdt = new CountDownTimer(spil_length, 1000) {
 
-                //Hvert sekund
-                public void onTick(long millisUntilFinished) {
-                    //Opdater uret
-                    text_ur.setText("" + millisUntilFinished / 1000);
-                    progressBar.setProgress((int) millisUntilFinished / 1000);
-                    text_score.setText("" + Singleton.point);
-                }
+                    //Hvert sekund
+                    public void onTick(long millisUntilFinished) {
+                        //Opdater uret
+                        text_ur.setText("" + millisUntilFinished / 1000);
+                        progressBar.setProgress((int) millisUntilFinished / 1000);
+                        text_score.setText("" + Singleton.point);
+                    }
 
-                public void onFinish() {
-                    text_ur.setText("0");
-                    progressBar.setProgress(0);
-                    text_score.setText("" + Singleton.point);
-                    skiftspil();
-                }
-            }.start();
+                    public void onFinish() {
+                        text_ur.setText("0");
+                        progressBar.setProgress(0);
+                        text_score.setText("" + Singleton.point);
+
+                        skiftspil();
+                    }
+                }.start();
         }
     }
 

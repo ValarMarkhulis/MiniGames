@@ -3,6 +3,8 @@ package com.example.chris.minigames;
 import android.app.Application;
 import android.os.AsyncTask;
 
+import com.firebase.client.Firebase;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class Singleton extends Application {
     public void onCreate() {
         super.onCreate();
         if(debug) System.out.println("Singletonklass's onCreate() blev kaldt!");
-
+        Firebase.setAndroidContext(this);
     }
 
 
